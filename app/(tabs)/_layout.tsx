@@ -18,10 +18,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="management"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, size }) => <Ionicons name="search" size={size} color={color} />
+          title: 'Management',
+          tabBarIcon: ({ color, size }) => <Ionicons name="settings-outline" size={size} color={color} />,
+          tabBarStyle: { display: 'none' }
         }}
       />
       <Tabs.Screen
@@ -29,6 +30,14 @@ export default function TabLayout() {
         options={{
           title: 'Your Cars',
           tabBarIcon: ({ color, size }) => <Ionicons name="car" size={size} color={color} />,
+          tabBarStyle: { display: 'none' }
+        }}
+      />
+      <Tabs.Screen
+        name="schedule-appointment"
+        options={{
+          title: 'Schedule Appointment',
+          tabBarIcon: ({ color, size }) => <Ionicons name="calendar-outline" size={size} color={color} />,
           tabBarStyle: { display: 'none' }
         }}
       />

@@ -1,10 +1,12 @@
+import { FloatingFooter } from '@/components/FloatingFooter';
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import {
     Dimensions,
     Image,
+    Modal,
     ScrollView,
     StyleSheet,
     Text,
@@ -64,26 +66,41 @@ const TIME_SLOTS: TimeSlot[] = [
 export default function ScheduleAppointmentScreen() {
     const insets = useSafeAreaInsets();
 
-    // Mock car data - in real app, this would come from route params
-    const car = {
-        plateNumber: 'RAD 123 C',
-        model: 'Toyota Corolla',
-        year: '2020',
-        color: 'Silver',
-    };
+    // Mock car data
+    const cars = [
+        {
+            id: '1',
+            plateNumber: 'RAB 121A',
+            brand: 'Toyota',
+            model: 'Corolla',
+            year: '2020',
+            color: 'Silver',
+            nextInspection: 'Feb 15, 2026',
+        },
+        {
+            id: '2',
+            plateNumber: 'RAC 456B',
+            brand: 'Honda',
+            model: 'Civic',
+            year: '2019',
+            color: 'Black',
+            nextInspection: 'Jan 25, 2026',
+        },
+    ];
 
-    // Form state
+    // State
+    const [selectedCarId, setSelectedCarId] = useState<string | null>(null);
+    const [isAppointmentModalVisible, setIsAppointmentModalVisible] = useState(false);
     const [appointmentType, setAppointmentType] = useState('inspection');
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
     const [selectedDate, setSelectedDate] = useState('');
-    const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
     const [notes, setNotes] = useState('');
 
     // Validation errors
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
     // Mock upcoming appointments
-    const [upcomingAppointments] = useState<UpcomingAppointment[]>([
+    const [upcomingAppointments, setUpcomingAppointments] = useState<UpcomingAppointment[]>([
         {
             id: '1',
             type: 'Car inspection',
@@ -92,18 +109,6 @@ export default function ScheduleAppointmentScreen() {
             location: 'City Center',
         },
     ]);
-
-    const getAppointmentTypeLabel = () => {
-        return APPOINTMENT_TYPES.find(t => t.id === appointmentType)?.label || '';
-    };
-
-    const getLocationName = () => {
-        return LOCATIONS.find(l => l.id === selectedLocation)?.name || '';
-    };
-
-    const getTimeSlotLabel = () => {
-        return TIME_SLOTS.find(t => t.id === selectedTimeSlot)?.time || '';
-    };
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {};
@@ -114,9 +119,6 @@ export default function ScheduleAppointmentScreen() {
         if (!selectedDate) {
             newErrors.date = 'Please select a date.';
         }
-        if (!selectedTimeSlot) {
-            newErrors.time = 'Please select a time slot.';
-        }
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -124,13 +126,23 @@ export default function ScheduleAppointmentScreen() {
 
     const handleConfirmAppointment = () => {
         if (validateForm()) {
-            // In real app, submit to backend
-            console.log('Appointment confirmed');
-            // Show success message or navigate
+            const newAppointment: UpcomingAppointment = {
+                id: Math.random().toString(36).substr(2, 9),
+                type: 'Car inspection', // Default for now
+                date: selectedDate,
+                time: '10:00 AM', // Default for now
+                location: selectedLocation || 'RNP Station',
+            };
+
+            setUpcomingAppointments([...upcomingAppointments, newAppointment]);
+            setIsAppointmentModalVisible(false);
+
+            // Success log
+            console.log('Appointment added:', newAppointment);
         }
     };
 
-    const isFormValid = selectedLocation && selectedDate && selectedTimeSlot;
+    const isFormValid = selectedLocation && selectedDate;
 
     return (
         <View style={styles.container}>
@@ -139,286 +151,205 @@ export default function ScheduleAppointmentScreen() {
             <ScrollView
                 contentContainerStyle={[
                     styles.contentContainer,
-                    { paddingTop: insets.top + 20, paddingBottom: 100 },
+                    { paddingBottom: 120 },
                 ]}
                 showsVerticalScrollIndicator={false}
             >
-                {/* Header */}
-                <View style={styles.header}>
-                    <Text style={styles.pageTitle}>Schedule Appointments</Text>
-                    <Text style={styles.breadcrumb}>Car Portal / Schedule</Text>
-                </View>
-
-                {/* Car Context Card */}
-                <View style={styles.carContextCard}>
-                    <View style={styles.carIconWrapper}>
-                        <Ionicons name="car-sport" size={32} color="#5B7FFF" />
-                    </View>
-                    <View style={styles.carContextContent}>
-                        <Text style={styles.carPlateNumber}>{car.plateNumber}</Text>
-                        <Text style={styles.carDetails}>
-                            {car.model} {car.year} • {car.color}
-                        </Text>
-                        <Text style={styles.carDescription}>
-                            Schedule a visit for inspections, fines, or other services for this vehicle.
-                        </Text>
-                    </View>
-                </View>
-
-                {/* Two Column Layout */}
-                <View style={styles.twoColumnLayout}>
-                    {/* Left Column - Form */}
-                    <View style={styles.leftColumn}>
-                        <View style={styles.formCard}>
-                            <Text style={styles.formTitle}>New appointment</Text>
-                            <Text style={styles.formSubtitle}>
-                                Fill in the details to schedule a visit for this vehicle.
-                            </Text>
-
-                            {/* Appointment Type */}
-                            <View style={styles.formSection}>
-                                <Text style={styles.label}>Appointment type</Text>
-                                <View style={styles.pillContainer}>
-                                    {APPOINTMENT_TYPES.map((type) => (
-                                        <TouchableOpacity
-                                            key={type.id}
-                                            style={[
-                                                styles.pill,
-                                                appointmentType === type.id && styles.pillActive,
-                                            ]}
-                                            onPress={() => setAppointmentType(type.id)}
-                                        >
-                                            <Text
-                                                style={[
-                                                    styles.pillText,
-                                                    appointmentType === type.id && styles.pillTextActive,
-                                                ]}
-                                            >
-                                                {type.label}
-                                            </Text>
-                                        </TouchableOpacity>
-                                    ))}
-                                </View>
-                            </View>
-
-                            {/* Location */}
-                            <View style={styles.formSection}>
-                                <Text style={styles.label}>Location</Text>
-                                {LOCATIONS.map((location) => (
-                                    <TouchableOpacity
-                                        key={location.id}
-                                        style={[
-                                            styles.locationCard,
-                                            selectedLocation === location.id && styles.locationCardActive,
-                                        ]}
-                                        onPress={() => {
-                                            setSelectedLocation(location.id);
-                                            setErrors({ ...errors, location: '' });
-                                        }}
-                                    >
-                                        <View style={styles.locationContent}>
-                                            <Text style={styles.locationName}>{location.name}</Text>
-                                            <Text style={styles.locationAddress}>{location.address}</Text>
-                                        </View>
-                                        {selectedLocation === location.id && (
-                                            <Ionicons name="checkmark-circle" size={24} color="#5B7FFF" />
-                                        )}
-                                    </TouchableOpacity>
-                                ))}
-                                {errors.location && (
-                                    <Text style={styles.errorText}>{errors.location}</Text>
-                                )}
-                            </View>
-
-                            {/* Date */}
-                            <View style={styles.formSection}>
-                                <Text style={styles.label}>Date</Text>
-                                <TextInput
-                                    style={[styles.input, errors.date && styles.inputError]}
-                                    placeholder="Select date (e.g., 2026-01-10)"
-                                    placeholderTextColor="#666"
-                                    value={selectedDate}
-                                    onChangeText={(text) => {
-                                        setSelectedDate(text);
-                                        setErrors({ ...errors, date: '' });
-                                    }}
-                                />
-                                {errors.date && <Text style={styles.errorText}>{errors.date}</Text>}
-                            </View>
-
-                            {/* Time Slots */}
-                            <View style={styles.formSection}>
-                                <Text style={styles.label}>Time</Text>
-                                <View style={styles.timeSlotGrid}>
-                                    {TIME_SLOTS.map((slot) => (
-                                        <TouchableOpacity
-                                            key={slot.id}
-                                            style={[
-                                                styles.timeSlot,
-                                                selectedTimeSlot === slot.id && styles.timeSlotActive,
-                                                !slot.available && styles.timeSlotDisabled,
-                                            ]}
-                                            onPress={() => {
-                                                if (slot.available) {
-                                                    setSelectedTimeSlot(slot.id);
-                                                    setErrors({ ...errors, time: '' });
-                                                }
-                                            }}
-                                            disabled={!slot.available}
-                                        >
-                                            <Text
-                                                style={[
-                                                    styles.timeSlotText,
-                                                    selectedTimeSlot === slot.id && styles.timeSlotTextActive,
-                                                    !slot.available && styles.timeSlotTextDisabled,
-                                                ]}
-                                            >
-                                                {slot.time}
-                                            </Text>
-                                        </TouchableOpacity>
-                                    ))}
-                                </View>
-                                {errors.time && <Text style={styles.errorText}>{errors.time}</Text>}
-                            </View>
-
-                            {/* Notes */}
-                            <View style={styles.formSection}>
-                                <Text style={styles.label}>Notes (optional)</Text>
-                                <TextInput
-                                    style={[styles.textarea]}
-                                    placeholder="Add any information for the officer or inspector (e.g., special car condition, preferred entrance, etc.)"
-                                    placeholderTextColor="#666"
-                                    value={notes}
-                                    onChangeText={setNotes}
-                                    multiline
-                                    numberOfLines={4}
-                                    textAlignVertical="top"
-                                />
-                            </View>
+                {/* Header Logic */}
+                {!selectedCarId ? (
+                    <>
+                        <View style={[styles.header, { marginTop: 50 }]}>
+                            <Text style={styles.pageTitle}>Schedule Appointment</Text>
+                            <Text style={styles.pageSubtitle}>Select a car to view appointments</Text>
                         </View>
-                    </View>
 
-                    {/* Right Column - Summary */}
-                    <View style={styles.rightColumn}>
-                        {/* Appointment Summary */}
-                        <View style={styles.summaryCard}>
-                            <Text style={styles.summaryTitle}>Appointment summary</Text>
+                        <Text style={styles.sectionInstruction}>Choose a car to manage appointments:</Text>
 
-                            <View style={styles.summaryRow}>
-                                <Text style={styles.summaryLabel}>Car</Text>
-                                <Text style={styles.summaryValue}>
-                                    {car.model} {car.year} – {car.color} – {car.plateNumber}
+                        <View style={styles.carsContainer}>
+                            {cars.map((car) => (
+                                <TouchableOpacity
+                                    key={car.id}
+                                    style={styles.carCard}
+                                    onPress={() => setSelectedCarId(car.id)}
+                                >
+                                    <View style={styles.carCardLeft}>
+                                        <LinearGradient
+                                            colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                                            start={{ x: 0, y: 0 }}
+                                            end={{ x: 1, y: 0 }}
+                                            style={styles.carIconContainer}
+                                        >
+                                            <Image
+                                                source={require('../../assets/images/car_icon_on_your_cars_page.png')}
+                                                style={styles.carIconImage}
+                                                resizeMode="contain"
+                                            />
+                                        </LinearGradient>
+                                        <View style={styles.bottomSpace} />
+                                    </View>
+                                    <View style={styles.carDetails}>
+                                        <View style={styles.carHeaderRow}>
+                                            <View>
+                                                <Text style={styles.plateNumber}>{car.plateNumber}</Text>
+                                                <Text style={styles.carInfo}>
+                                                    {car.brand} {car.model} • {car.year}
+                                                </Text>
+                                                <Text style={styles.carColor}>Color: {car.color}</Text>
+                                            </View>
+                                            <Ionicons name="chevron-forward" size={20} color="rgba(255, 255, 255, 0.6)" style={styles.chevron} />
+                                        </View>
+
+                                        <View style={styles.dividerContainer}>
+                                            <View style={styles.cardDivider} />
+                                            <View style={styles.inspectionRow}>
+                                                <Text style={styles.inspectionLabel}>Next Inspection</Text>                                                <Text style={styles.inspectionDate}>{car.nextInspection}</Text>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            ))}
+                        </View>
+                    </>
+                ) : (
+                    <>
+                        <View style={[styles.headerAlt, { marginTop: 50 }]}>
+                            <TouchableOpacity
+                                style={styles.backButton}
+                                onPress={() => setSelectedCarId(null)}
+                            >
+                                <Ionicons name="chevron-back" size={24} color="#FFF" />
+                            </TouchableOpacity>
+
+                            <View style={styles.titleWrapper}>
+                                <Text style={styles.appointmentsTitle}>Appointments</Text>
+                                <Text style={styles.appointmentsSubtitle}>
+                                    {cars.find(c => c.id === selectedCarId)?.plateNumber} - 1 appointment(s)
                                 </Text>
-                            </View>
-
-                            <View style={styles.summaryRow}>
-                                <Text style={styles.summaryLabel}>Type</Text>
-                                <Text style={styles.summaryValue}>{getAppointmentTypeLabel()}</Text>
-                            </View>
-
-                            <View style={styles.summaryRow}>
-                                <Text style={styles.summaryLabel}>Location</Text>
-                                <Text style={styles.summaryValue}>
-                                    {getLocationName() || 'Not selected'}
-                                </Text>
-                            </View>
-
-                            <View style={styles.summaryRow}>
-                                <Text style={styles.summaryLabel}>Date & time</Text>
-                                <Text style={styles.summaryValue}>
-                                    {selectedDate && selectedTimeSlot
-                                        ? `${selectedDate} – ${getTimeSlotLabel()}`
-                                        : 'Not selected'}
-                                </Text>
-                            </View>
-
-                            <View style={styles.summaryRow}>
-                                <Text style={styles.summaryLabel}>Estimated fee</Text>
-                                <Text style={styles.summaryFee}>20,000 RWF</Text>
                             </View>
 
                             <TouchableOpacity
-                                style={[
-                                    styles.confirmButton,
-                                    !isFormValid && styles.confirmButtonDisabled,
-                                ]}
+                                onPress={() => setIsAppointmentModalVisible(true)}
+                            >
+                                <LinearGradient
+                                    colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    style={styles.addButtonAlt}
+                                >
+                                    <Ionicons name="add" size={28} color="#FFF" />
+                                </LinearGradient>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.appointmentsList}>
+                            {upcomingAppointments.map((appointment) => (
+                                <View key={appointment.id} style={styles.appointmentCard}>
+                                    <View style={styles.appointmentCardContent}>
+                                        <View style={styles.appointmentHeaderRow}>
+                                            <Text style={styles.appointmentMainLabel}>{appointment.type}</Text>
+                                            <View style={styles.statusBadge}>
+                                                <Ionicons name="time-outline" size={14} color="#3B6CF2" />
+                                                <Text style={styles.statusText}>Scheduled</Text>
+                                            </View>
+                                        </View>
+                                        <Text style={styles.appointmentPlate}>{cars.find(c => c.id === selectedCarId)?.plateNumber}</Text>
+
+                                        <View style={styles.appointmentDetailRow}>
+                                            <Ionicons name="calendar-outline" size={16} color="#A1B1C8" />
+                                            <Text style={styles.appointmentDetailText}>{appointment.date} • {appointment.time}</Text>
+                                        </View>
+
+                                        <View style={styles.appointmentDetailRow}>
+                                            <Ionicons name="location-outline" size={16} color="#A1B1C8" />
+                                            <Text style={styles.appointmentDetailText}>{appointment.location}</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            ))}
+                        </View>
+                    </>
+                )}
+
+            </ScrollView>
+
+            {/* New Appointment Modal */}
+            <Modal
+                visible={isAppointmentModalVisible}
+                transparent={true}
+                animationType="slide"
+                onRequestClose={() => setIsAppointmentModalVisible(false)}
+            >
+                <View style={styles.modalOverlay}>
+                    <View style={styles.modalContent}>
+                        <View style={styles.modalHeader}>
+                            <View>
+                                <Text style={styles.modalTitle}>New Appointment</Text>
+                                <View style={styles.modalTitleAccent} />
+                            </View>
+                            <TouchableOpacity
+                                onPress={() => setIsAppointmentModalVisible(false)}
+                                style={styles.closeButton}
+                            >
+                                <Ionicons name="close" size={24} color="#FFF" />
+                            </TouchableOpacity>
+                        </View>
+
+                        <ScrollView showsVerticalScrollIndicator={false}>
+                            <View style={styles.modalForm}>
+                                <View style={styles.formItem}>
+                                    <Text style={styles.modalLabel}>Appointment Type</Text>
+                                    <TouchableOpacity style={styles.dropdownInput}>
+                                        <Text style={styles.dropdownText}>Car inspection</Text>
+                                        <Ionicons name="chevron-down" size={20} color="#A1B1C8" />
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={styles.formItem}>
+                                    <Text style={styles.modalLabel}>Date</Text>
+                                    <View style={styles.iconInputWrapper}>
+                                        <TextInput
+                                            style={styles.modalInput}
+                                            placeholder="mm/dd/yyy"
+                                            placeholderTextColor="#444"
+                                            value={selectedDate}
+                                            onChangeText={setSelectedDate}
+                                        />
+                                        <Ionicons name="calendar-outline" size={20} color="#444" style={styles.inputIcon} />
+                                    </View>
+                                </View>
+
+                                <View style={styles.formItem}>
+                                    <Text style={styles.modalLabel}>Location</Text>
+                                    <TextInput
+                                        style={styles.modalInput}
+                                        placeholder="e.g , Central Inspection Center"
+                                        placeholderTextColor="#444"
+                                        value={selectedLocation || ''}
+                                        onChangeText={setSelectedLocation}
+                                    />
+                                </View>
+                            </View>
+
+                            <TouchableOpacity
+                                style={[styles.confirmModalButton, !isFormValid && { opacity: 0.5 }]}
                                 onPress={handleConfirmAppointment}
                                 disabled={!isFormValid}
                             >
-                                <Text style={styles.confirmButtonText}>Confirm appointment</Text>
+                                <LinearGradient
+                                    colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    style={styles.confirmModalGradient}
+                                >
+                                    <Text style={styles.confirmModalText}>Confirm</Text>
+                                </LinearGradient>
                             </TouchableOpacity>
-
-                            <TouchableOpacity
-                                style={styles.cancelButton}
-                                onPress={() => router.back()}
-                            >
-                                <Text style={styles.cancelButtonText}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        {/* Upcoming Appointments */}
-                        <View style={styles.upcomingCard}>
-                            <Text style={styles.upcomingTitle}>Upcoming appointments</Text>
-
-                            {upcomingAppointments.length > 0 ? (
-                                upcomingAppointments.map((appointment) => (
-                                    <View key={appointment.id} style={styles.appointmentRow}>
-                                        <Text style={styles.appointmentText}>
-                                            {appointment.type} – {appointment.date} – {appointment.time} –{' '}
-                                            {appointment.location}
-                                        </Text>
-                                    </View>
-                                ))
-                            ) : (
-                                <Text style={styles.emptyText}>
-                                    No upcoming appointments. Schedule one using the form on the left.
-                                </Text>
-                            )}
-                        </View>
+                        </ScrollView>
                     </View>
                 </View>
-            </ScrollView>
+            </Modal>
 
-            {/* Custom Bottom Footer - Floating */}
-            <View style={[styles.footer, { paddingBottom: insets.bottom > 0 ? insets.bottom : 20 }]}>
-                <TouchableOpacity style={styles.footerItem} onPress={() => router.push('/')}>
-                    <Image
-                        source={require('../../assets/images/material-symbols_home-outline-rounded.png')}
-                        style={{ width: 24, height: 24, tintColor: '#666' }}
-                        resizeMode="contain"
-                    />
-                    <Text style={styles.footerText}>Home</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.footerItem} onPress={() => router.push('/your-cars')}>
-                    <Image
-                        source={require('../../assets/images/car_icon.png')}
-                        style={{ width: 24, height: 24, tintColor: '#666' }}
-                        resizeMode="contain"
-                    />
-                    <Text style={styles.footerText}>Your Car</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.footerItem}>
-                    <View style={styles.activeFooterIcon}>
-                        <Image
-                            source={require('../../assets/images/mdi_calendar-outline.png')}
-                            style={{ width: 24, height: 24, tintColor: '#FFF' }}
-                            resizeMode="contain"
-                        />
-                    </View>
-                    <Text style={styles.activeFooterText}>Appointment</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.footerItem}>
-                    <Image
-                        source={require('../../assets/images/material-symbols_settings-outline-rounded.png')}
-                        style={{ width: 24, height: 24, tintColor: '#666' }}
-                        resizeMode="contain"
-                    />
-                    <Text style={styles.footerText}>Management</Text>
-                </TouchableOpacity>
-            </View>
+            <FloatingFooter activeTab="appointment" />
         </View>
     );
 }
@@ -435,357 +366,318 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     pageTitle: {
-        fontFamily: 'Cairo',
-        fontSize: 32,
-        fontWeight: 'bold',
+        fontFamily: 'CairoBold',
+        fontSize: 24,
         color: '#FFF',
-        marginBottom: 4,
+        marginBottom: -10,
     },
-    breadcrumb: {
+    pageSubtitle: {
         fontFamily: 'Cairo',
-        fontSize: 13,
-        color: '#888',
+        fontSize: 16,
+        color: '#A1B1C8',
+        marginTop: 0,
     },
-    carContextCard: {
+    headerAlt: {
         flexDirection: 'row',
-        backgroundColor: '#131722',
-        borderRadius: 16,
-        padding: 20,
+        alignItems: 'center',
         marginBottom: 24,
-        borderWidth: 1,
-        borderColor: 'rgba(151, 151, 151, 0.2)',
     },
-    carIconWrapper: {
-        width: 60,
-        height: 60,
-        borderRadius: 12,
-        backgroundColor: 'rgba(91, 127, 255, 0.15)',
+    backButton: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 16,
+        borderWidth: 1,
+        borderColor: '#262B3B',
     },
-    carContextContent: {
+    titleWrapper: {
         flex: 1,
     },
-    carPlateNumber: {
-        fontFamily: 'Cairo',
-        fontSize: 20,
-        fontWeight: 'bold',
+    appointmentsTitle: {
+        fontFamily: 'CairoBold',
+        fontSize: 28,
         color: '#FFF',
-        marginBottom: 4,
     },
-    carDetails: {
+    appointmentsSubtitle: {
         fontFamily: 'Cairo',
         fontSize: 14,
-        color: '#AAA',
-        marginBottom: 8,
+        color: '#A1B1C8',
+        marginTop: -4,
     },
-    carDescription: {
-        fontFamily: 'Cairo',
-        fontSize: 12,
-        color: '#888',
-        lineHeight: 18,
+    addButtonAlt: {
+        width: 44,
+        height: 44,
+        borderRadius: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    twoColumnLayout: {
-        flexDirection: width > 768 ? 'row' : 'column',
-        gap: 20,
+    appointmentsList: {
+        gap: 16,
     },
-    leftColumn: {
-        flex: width > 768 ? 0.6 : 1,
-    },
-    rightColumn: {
-        flex: width > 768 ? 0.4 : 1,
-        gap: 20,
-    },
-    formCard: {
-        backgroundColor: '#131722',
-        borderRadius: 16,
-        padding: 20,
+    appointmentCard: {
+        width: '100%',
+        backgroundColor: 'transparent',
+        borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'rgba(151, 151, 151, 0.2)',
+        borderColor: '#979797',
+        padding: 16,
     },
-    formTitle: {
-        fontFamily: 'Cairo',
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: '#FFF',
-        marginBottom: 4,
+    appointmentCardContent: {
+        flex: 1,
     },
-    formSubtitle: {
-        fontFamily: 'Cairo',
-        fontSize: 13,
-        color: '#888',
-        marginBottom: 24,
-    },
-    formSection: {
-        marginBottom: 24,
-    },
-    label: {
-        fontFamily: 'Cairo',
-        fontSize: 15,
-        fontWeight: '600',
-        color: '#FFF',
-        marginBottom: 12,
-    },
-    pillContainer: {
+    appointmentHeaderRow: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 10,
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        marginBottom: 2,
     },
-    pill: {
-        paddingHorizontal: 16,
-        paddingVertical: 10,
-        borderRadius: 20,
-        backgroundColor: '#1A1F2E',
-        borderWidth: 1,
-        borderColor: 'rgba(151, 151, 151, 0.2)',
-    },
-    pillActive: {
-        backgroundColor: '#5B7FFF',
-        borderColor: '#5B7FFF',
-    },
-    pillText: {
-        fontFamily: 'Cairo',
-        fontSize: 14,
-        color: '#AAA',
-    },
-    pillTextActive: {
+    appointmentMainLabel: {
+        fontFamily: 'CairoBold',
+        fontSize: 18,
         color: '#FFF',
-        fontWeight: '600',
     },
-    locationCard: {
+    statusBadge: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: '#1A1F2E',
+        backgroundColor: 'rgba(59, 108, 242, 0.1)',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
         borderRadius: 12,
-        padding: 16,
-        marginBottom: 10,
+        gap: 4,
+    },
+    statusText: {
+        fontFamily: 'Cairo',
+        fontSize: 12,
+        color: '#3B6CF2',
+    },
+    appointmentPlate: {
+        fontFamily: 'Cairo',
+        fontSize: 14,
+        color: '#A1B1C8',
+        marginBottom: 12,
+    },
+    appointmentDetailRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        marginBottom: 6,
+    },
+    appointmentDetailText: {
+        fontFamily: 'Cairo',
+        fontSize: 13,
+        color: '#A1B1C8',
+    },
+    sectionInstruction: {
+        fontFamily: 'Cairo',
+        fontSize: 16,
+        color: '#A1B1C8',
+        marginBottom: 16,
+        marginTop: 10,
+    },
+    carsContainer: {
+        gap: 16,
+    },
+    carCard: {
+        width: '100%',
+        height: 113,
+        flexDirection: 'row',
+        backgroundColor: '#131722',
+        borderRadius: 10,
+        padding: 14,
         borderWidth: 1,
-        borderColor: 'rgba(151, 151, 151, 0.2)',
+        borderColor: '#262B3B',
+        marginBottom: 12,
     },
-    locationCardActive: {
-        borderColor: '#5B7FFF',
-        borderWidth: 2,
+    carCardLeft: {
+        marginRight: 18,
+        alignItems: 'center',
     },
-    locationContent: {
+    carIconContainer: {
+        width: 49,
+        height: 44,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    carIconImage: {
+        width: 28,
+        height: 28,
+        tintColor: '#FFF',
+    },
+    bottomSpace: {
         flex: 1,
     },
-    locationName: {
-        fontFamily: 'Cairo',
-        fontSize: 15,
-        fontWeight: '600',
-        color: '#FFF',
-        marginBottom: 4,
+    carDetails: {
+        flex: 1,
+        paddingTop: 2,
     },
-    locationAddress: {
-        fontFamily: 'Cairo',
-        fontSize: 12,
-        color: '#888',
-    },
-    input: {
-        fontFamily: 'Cairo',
-        backgroundColor: '#1A1F2E',
-        borderRadius: 12,
-        paddingHorizontal: 16,
-        paddingVertical: 14,
-        fontSize: 15,
-        color: '#FFF',
-        borderWidth: 1,
-        borderColor: 'rgba(151, 151, 151, 0.2)',
-    },
-    inputError: {
-        borderColor: '#D32F2F',
-    },
-    textarea: {
-        fontFamily: 'Cairo',
-        backgroundColor: '#1A1F2E',
-        borderRadius: 12,
-        paddingHorizontal: 16,
-        paddingVertical: 14,
-        fontSize: 15,
-        color: '#FFF',
-        borderWidth: 1,
-        borderColor: 'rgba(151, 151, 151, 0.2)',
-        minHeight: 100,
-    },
-    timeSlotGrid: {
+    carHeaderRow: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
-    timeSlot: {
-        paddingHorizontal: 14,
-        paddingVertical: 10,
-        borderRadius: 20,
-        backgroundColor: '#1A1F2E',
-        borderWidth: 1,
-        borderColor: 'rgba(151, 151, 151, 0.2)',
-    },
-    timeSlotActive: {
-        backgroundColor: '#5B7FFF',
-        borderColor: '#5B7FFF',
-    },
-    timeSlotDisabled: {
-        backgroundColor: '#0F1219',
-        opacity: 0.5,
-    },
-    timeSlotText: {
-        fontFamily: 'Cairo',
-        fontSize: 13,
-        color: '#AAA',
-    },
-    timeSlotTextActive: {
+    plateNumber: {
+        fontFamily: 'CairoBold',
+        fontSize: 18,
         color: '#FFF',
-        fontWeight: '600',
+        lineHeight: 22,
+        marginBottom: -1,
     },
-    timeSlotTextDisabled: {
-        color: '#555',
-    },
-    errorText: {
+    carInfo: {
         fontFamily: 'Cairo',
         fontSize: 12,
-        color: '#D32F2F',
-        marginTop: 6,
+        color: 'rgba(255, 255, 255, 0.4)',
+        lineHeight: 16,
+        marginTop: 0,
+        marginBottom: -1,
     },
-    summaryCard: {
-        backgroundColor: '#131722',
-        borderRadius: 16,
+    carColor: {
+        fontFamily: 'Cairo',
+        fontSize: 11,
+        color: 'rgba(255, 255, 255, 0.4)',
+        lineHeight: 14,
+        marginBottom: 9,
+    },
+    chevron: {
+        opacity: 0.6,
+        marginTop: 10,
+    },
+    dividerContainer: {
+        marginLeft: -67,
+    },
+    cardDivider: {
+        height: 1,
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        marginBottom: 3,
+        width: '100%',
+    },
+    inspectionRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingLeft: 4,
+        width: '100%',
+    },
+    inspectionLabel: {
+        fontFamily: 'Cairo',
+        fontSize: 11,
+        color: '#999',
+    },
+    inspectionDate: {
+        fontFamily: 'Cairo',
+        fontSize: 12,
+        fontWeight: '600',
+        color: '#3B6CF2',
+    },
+    twoColumnLayout: {
+        flexDirection: 'row',
+        gap: 20,
+        marginTop: 30,
+    },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        justifyContent: 'center',
+        alignItems: 'center',
         padding: 20,
+    },
+    modalContent: {
+        width: '100%',
+        maxWidth: 400,
+        backgroundColor: '#131722',
+        borderRadius: 20,
+        padding: 24,
         borderWidth: 1,
-        borderColor: 'rgba(151, 151, 151, 0.2)',
+        borderColor: '#262B3B',
     },
-    summaryTitle: {
-        fontFamily: 'Cairo',
-        fontSize: 20,
-        fontWeight: 'bold',
+    modalHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        marginBottom: 24,
+    },
+    modalTitle: {
+        fontFamily: 'CairoBold',
+        fontSize: 24,
         color: '#FFF',
-        marginBottom: 20,
     },
-    summaryRow: {
-        marginBottom: 16,
+    modalTitleAccent: {
+        height: 3,
+        backgroundColor: '#3B6CF2',
+        width: 140,
+        marginTop: -2,
     },
-    summaryLabel: {
-        fontFamily: 'Cairo',
-        fontSize: 13,
-        color: '#888',
-        marginBottom: 4,
+    closeButton: {
+        width: 32,
+        height: 32,
+        borderRadius: 16,
+        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 0.1)',
     },
-    summaryValue: {
+    modalForm: {
+        gap: 20,
+    },
+    formItem: {
+        gap: 8,
+    },
+    modalLabel: {
         fontFamily: 'Cairo',
         fontSize: 14,
         color: '#FFF',
     },
-    summaryFee: {
+    dropdownInput: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        borderRadius: 12,
+        paddingHorizontal: 16,
+        paddingVertical: 14,
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 0.1)',
+    },
+    dropdownText: {
         fontFamily: 'Cairo',
         fontSize: 16,
-        fontWeight: 'bold',
-        color: '#5B7FFF',
+        color: '#FFF',
     },
-    confirmButton: {
-        backgroundColor: '#5B7FFF',
+    iconInputWrapper: {
+        position: 'relative',
+    },
+    modalInput: {
+        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        borderRadius: 12,
+        paddingHorizontal: 16,
+        paddingVertical: 14,
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 0.1)',
+        fontFamily: 'Cairo',
+        fontSize: 16,
+        color: '#FFF',
+    },
+    inputIcon: {
+        position: 'absolute',
+        right: 16,
+        top: 15,
+    },
+    confirmModalButton: {
+        marginTop: 30,
+        marginBottom: 10,
+    },
+    confirmModalGradient: {
         borderRadius: 12,
         paddingVertical: 16,
         alignItems: 'center',
-        marginTop: 24,
-        marginBottom: 12,
     },
-    confirmButtonDisabled: {
-        backgroundColor: '#3A3F4E',
-        opacity: 0.5,
-    },
-    confirmButtonText: {
-        fontFamily: 'Cairo',
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#FFF',
-    },
-    cancelButton: {
-        alignItems: 'center',
-        paddingVertical: 12,
-    },
-    cancelButtonText: {
-        fontFamily: 'Cairo',
-        fontSize: 14,
-        color: '#888',
-    },
-    upcomingCard: {
-        backgroundColor: '#131722',
-        borderRadius: 16,
-        padding: 20,
-        borderWidth: 1,
-        borderColor: 'rgba(151, 151, 151, 0.2)',
-    },
-    upcomingTitle: {
-        fontFamily: 'Cairo',
+    confirmModalText: {
+        fontFamily: 'CairoBold',
         fontSize: 18,
-        fontWeight: 'bold',
         color: '#FFF',
-        marginBottom: 16,
-    },
-    appointmentRow: {
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(151, 151, 151, 0.1)',
-    },
-    appointmentText: {
-        fontFamily: 'Cairo',
-        fontSize: 13,
-        color: '#AAA',
-        lineHeight: 18,
-    },
-    emptyText: {
-        fontFamily: 'Cairo',
-        fontSize: 13,
-        color: '#666',
-        fontStyle: 'italic',
-    },
-    footer: {
-        position: 'absolute',
-        bottom: 20,
-        left: 20,
-        right: 20,
-        height: 70,
-        backgroundColor: '#161B2B',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#262B3B',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        paddingHorizontal: 10,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.3,
-        shadowRadius: 4.65,
-        elevation: 8,
-    },
-    footerItem: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    activeFooterIcon: {
-        backgroundColor: '#2D5EFF',
-        width: 36,
-        height: 36,
-        borderRadius: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 2,
-    },
-    activeFooterText: {
-        fontFamily: 'Cairo',
-        color: '#FFF',
-        fontSize: 10,
-        fontWeight: 'bold',
-    },
-    footerText: {
-        fontFamily: 'Cairo',
-        color: '#666',
-        fontSize: 10,
-        marginTop: 4,
     },
 });

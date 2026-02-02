@@ -97,6 +97,8 @@ export default function VerifyPhoneScreen() {
                                                 value={phone}
                                                 onChangeText={setPhone}
                                                 clearButtonMode="while-editing"
+                                            // that is thae page that does not access what is in the input  
+                                            // it is not used and it is not easy to access what is not 4
                                             />
                                         </View>
                                         {isPhoneValid && (

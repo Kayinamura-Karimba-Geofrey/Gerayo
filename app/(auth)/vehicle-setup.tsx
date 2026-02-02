@@ -1,5 +1,6 @@
 import { Cairo_500Medium, Cairo_700Bold, useFonts } from '@expo-google-fonts/cairo';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
@@ -64,6 +65,7 @@ export default function VehicleSetupScreen() {
                     onScroll={handleScroll}
                     scrollEventThrottle={16}
                 >
+                // this is the document that i need to know bec
                     {/* Car Image Section */}
                     <View style={styles.imageContainer}>
                         <Image
@@ -130,10 +132,16 @@ export default function VehicleSetupScreen() {
 
                             {/* Continue Button */}
                             <HapticButton
-                                style={styles.primaryButton}
                                 onPress={() => router.replace('/(tabs)')}
                             >
-                                <Text style={styles.primaryButtonText}>Continue</Text>
+                                <LinearGradient
+                                    colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    style={styles.primaryButton}
+                                >
+                                    <Text style={styles.primaryButtonText}>Continue</Text>
+                                </LinearGradient>
                             </HapticButton>
                         </View>
                     </View>
@@ -288,7 +296,6 @@ const styles = StyleSheet.create({
         right: 12,
     },
     primaryButton: {
-        backgroundColor: '#004080',
         borderRadius: 25,
         width: 230,
         height: 50,

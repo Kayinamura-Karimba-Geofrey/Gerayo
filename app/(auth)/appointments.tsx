@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
@@ -36,9 +37,14 @@ export default function AppointmentsScreen() {
         <View style={styles.list}>
           {cars.map((car) => (
             <TouchableOpacity key={car.id} style={styles.card} onPress={() => openScheduler(car)}>
-              <View style={styles.iconWrap}>
-                <Ionicons name="car-outline" size={24} color="#5B7FFF" />
-              </View>
+              <LinearGradient
+                colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.iconWrap}
+              >
+                <Ionicons name="car-outline" size={24} color="#FFF" />
+              </LinearGradient>
               <View style={styles.cardBody}>
                 <View style={styles.cardHeader}>
                   <Text style={styles.plate}>{car.plateNumber}</Text>
@@ -69,9 +75,14 @@ export default function AppointmentsScreen() {
           <Text style={styles.footerText}>Your Car</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.footerItem}>
-          <View style={styles.activeIcon}>
+          <LinearGradient
+            colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={styles.activeIcon}
+          >
             <Image source={require('../../assets/images/mdi_calendar-outline.png')} style={{ width: 24, height: 24, tintColor: '#FFF' }} />
-          </View>
+          </LinearGradient>
           <Text style={styles.activeText}>Appointment</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.footerItem}>
@@ -91,7 +102,7 @@ const styles = StyleSheet.create({
   sectionLabel: { fontFamily: 'Cairo', fontSize: 13, color: '#9aa', marginBottom: 10 },
   list: { gap: 12 },
   card: { flexDirection: 'row', backgroundColor: '#1A1F2E', borderRadius: 16, padding: 12, borderWidth: 1, borderColor: '#262B3B' },
-  iconWrap: { width: 44, height: 44, borderRadius: 12, backgroundColor: 'rgba(91,127,255,0.15)', justifyContent: 'center', alignItems: 'center', marginRight: 12 },
+  iconWrap: { width: 49, height: 44, borderRadius: 10, justifyContent: 'center', alignItems: 'center', marginRight: 12 },
   cardBody: { flex: 1 },
   cardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   plate: { fontFamily: 'Cairo', fontSize: 16, fontWeight: 'bold', color: '#FFF' },
@@ -102,7 +113,7 @@ const styles = StyleSheet.create({
   date: { fontFamily: 'Cairo', fontSize: 12, fontWeight: '600', color: '#5B7FFF' },
   footer: { position: 'absolute', bottom: 20, left: 20, right: 20, height: 70, backgroundColor: '#161B2B', borderRadius: 10, borderWidth: 1, borderColor: '#262B3B', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingHorizontal: 10, elevation: 8 },
   footerItem: { alignItems: 'center', justifyContent: 'center' },
-  activeIcon: { backgroundColor: '#2D5EFF', width: 36, height: 36, borderRadius: 12, justifyContent: 'center', alignItems: 'center', marginBottom: 2 },
+  activeIcon: { width: 36, height: 36, borderRadius: 12, justifyContent: 'center', alignItems: 'center', marginBottom: 2 },
   activeText: { fontFamily: 'Cairo', color: '#FFF', fontSize: 10, fontWeight: 'bold' },
   footerText: { fontFamily: 'Cairo', color: '#666', fontSize: 10, marginTop: 4 },
 });

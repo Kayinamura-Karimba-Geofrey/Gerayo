@@ -1,11 +1,11 @@
-import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { FloatingFooter } from '@/components/FloatingFooter';
+import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
@@ -16,25 +16,30 @@ export default function HomeScreen() {
 
       {/* Main Content */}
       <ScrollView
-        contentContainerStyle={[styles.contentContainer, { paddingTop: insets.top + 10, paddingBottom: 100 }]}
+        contentContainerStyle={[styles.contentContainer, { paddingBottom: 120 }]}
         showsVerticalScrollIndicator={false}
       >
 
-        {/* Header Section */}
-        <View style={styles.headerContainer}>
-          <View style={styles.headerTexts}>
-            <Text style={styles.welcomeText}>Welcome back</Text>
-            <Text style={styles.appTitle}>Car Portal</Text>
-          </View>
+        {/* Header Icons Container - 30px from top */}
+        <View style={[styles.headerIconsContainer, { top: 30 }]}>
           <View style={styles.headerIcons}>
             <View style={styles.notificationBadge}>
-              <Image source={require('../../assets/images/notification_icon.png')} style={{ width: 24, height: 24 }} resizeMode="contain" />
+              <Image source={require('../../assets/images/notification_icon.png')} style={{ width: 30, height: 30 }} resizeMode="contain" />
               <View style={styles.badge}><Text style={styles.badgeText}>3</Text></View>
             </View>
             <Image
-              source={{ uri: 'https://i.pravatar.cc/150' }}
+              source={require('../../assets/images/user_icon.png')}
               style={styles.profileImage}
+              resizeMode="contain"
             />
+          </View>
+        </View>
+
+        {/* Header Section - Title at 35px from top */}
+        <View style={[styles.headerContainer, { marginTop: 35 }]}>
+          <View style={styles.headerTexts}>
+            <Text style={styles.welcomeText}>Welcome back</Text>
+            <Text style={styles.appTitle}>Car Portal</Text>
           </View>
         </View>
 
@@ -55,89 +60,139 @@ export default function HomeScreen() {
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Upcoming Inspections</Text>
 
-          <TouchableOpacity style={[styles.card, styles.cardBlueBorder]}>
-            <View style={styles.cardIconContainerBlue}>
-              <Ionicons name="time-outline" size={24} color="#2D5EFF" />
-            </View>
-            <View style={styles.cardContent}>
-              <View style={styles.cardHeaderRow}>
+          {/* Inspection Card 1 */}
+          <View style={[styles.card, styles.cardBlueBorder]}>
+            <View style={styles.cardMainRow}>
+              <LinearGradient
+                colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.cardIconContainerBlue}
+              >
+                <Image
+                  source={require('../../assets/images/upcomming_inspection_longtimeremaining.png')}
+                  style={{ width: 20, height: 20, tintColor: '#FFF' }}
+                  resizeMode="contain"
+                />
+              </LinearGradient>
+              <View style={styles.cardContent}>
                 <Text style={styles.plateNumber}>RAB 123A</Text>
-                <View style={styles.daysLeftContainer}>
-                  <Text style={styles.daysLeftBlue}>30</Text>
-                  <Text style={styles.daysLeftLabel}>days left</Text>
-                </View>
+                <Text style={styles.carModel}>Toyota Corolla</Text>
               </View>
-              <Text style={styles.carModel}>Toyota Corolla</Text>
-              <Text style={styles.nextInspection}>Next inspection: January 2026</Text>
+              <View style={styles.daysLeftContainer}>
+                <Text style={styles.daysLeftBlue}>25</Text>
+                <Text style={styles.daysLeftLabel}>days left</Text>
+              </View>
             </View>
-          </TouchableOpacity>
+            <View style={styles.cardDivider} />
+            <Text style={styles.nextInspection}>Next inspection : January 2026</Text>
+          </View>
 
-          <TouchableOpacity style={[styles.card, styles.cardRedBorder]}>
-            <View style={styles.cardIconContainerRed}>
-              <Ionicons name="alert-circle-outline" size={24} color="#D32F2F" />
-            </View>
-            <View style={styles.cardContent}>
-              <View style={styles.cardHeaderRow}>
-                <Text style={styles.plateNumber}>RAC 456B</Text>
-                <View style={styles.daysLeftContainer}>
-                  <Text style={styles.daysLeftRed}>5</Text>
-                  <Text style={styles.daysLeftLabel}>days left</Text>
-                </View>
+          {/* Inspection Card 2 */}
+          <View style={[styles.card, styles.cardRedBorder]}>
+            <View style={styles.cardMainRow}>
+              <LinearGradient
+                colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.cardIconContainerRed}
+              >
+                <Image
+                  source={require('../../assets/images/upcomming_inspection_shortime_remaining.png')}
+                  style={{ width: 23.91, height: 23.91, tintColor: '#FFF' }}
+                  resizeMode="contain"
+                />
+              </LinearGradient>
+              <View style={styles.cardContent}>
+                <Text style={styles.plateNumber}>RAE 789C</Text>
+                <Text style={styles.carModel}>Volkswagen Golf</Text>
               </View>
-              <Text style={styles.carModel}>Honda Civic</Text>
-              <Text style={styles.nextInspection}>Next inspection: January 2026</Text>
+              <View style={styles.daysLeftContainer}>
+                <Text style={styles.daysLeftRed}>02</Text>
+                <Text style={styles.daysLeftLabel}>days left</Text>
+              </View>
             </View>
-          </TouchableOpacity>
+            <View style={styles.cardDivider} />
+            <Text style={styles.nextInspection}>Next inspection : Feb 2026</Text>
+          </View>
         </View>
 
         {/* Police Announcements */}
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Police Announcements</Text>
 
-          <TouchableOpacity style={[styles.card, styles.cardDarkBorder]}>
-            <View style={styles.cardIconContainerPurple}>
-              <Ionicons name="notifications" size={24} color="#A020F0" />
-            </View>
-            <View style={styles.cardContent}>
-              <View style={styles.cardHeaderRow}>
-                <Text style={styles.announcementTitle}>New Traffic Suggestion</Text>
-                <Text style={styles.announcementDate}>Jan 14</Text>
+          {/* Announcement 1 */}
+          <TouchableOpacity style={styles.announcementCard}>
+            <View style={[styles.sidebar, { backgroundColor: '#2D5EFF' }]} />
+            <View style={styles.announcementMain}>
+              <View style={styles.announcementHeader}>
+                <View style={styles.announcementIconCircle}>
+                  <Image source={require('../../assets/images/newtrafficsuggestion.png')} style={{ width: 30, height: 30 }} resizeMode="contain" />
+                </View>
+                <View style={styles.announcementTextContainer}>
+                  <Text style={styles.announcementTitle}>New Traffic Suggestion</Text>
+                  <Text style={styles.announcementText}>All vehicles must complete their annual inspection by the end of the month. Book your appointment now.</Text>
+                </View>
+                <Text style={styles.announcementDate}>2h ago</Text>
               </View>
-              <Text style={styles.announcementText} numberOfLines={2}>
-                Starting February 1st, new speed limits will be enforced on all major highways.
-              </Text>
             </View>
           </TouchableOpacity>
 
-          {/* Small gap for second item if needed, but keeping it simple for the "scroll-free" feel */}
+          {/* Announcement 2 */}
+          <TouchableOpacity style={styles.announcementCard}>
+            <View style={[styles.sidebar, { backgroundColor: '#FFB800' }]} />
+            <View style={styles.announcementMain}>
+              <View style={styles.announcementHeader}>
+                <View style={[styles.announcementIconCircle, { backgroundColor: 'rgba(255, 184, 0, 0.1)' }]}>
+                  <Image source={require('../../assets/images/vehicle_inspection_reminder.png')} style={{ width: 30, height: 30 }} resizeMode="contain" />
+                </View>
+                <View style={styles.announcementTextContainer}>
+                  <Text style={styles.announcementTitle}>Vehicle Inspection Reminder</Text>
+                  <Text style={styles.announcementText}>Your vehicle RAB 123A is due for inspection in 25 days. Please schedule an appointment.</Text>
+                </View>
+                <Text style={styles.announcementDate}>1d ago</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          {/* Announcement 3 */}
+          <TouchableOpacity style={styles.announcementCard}>
+            <View style={[styles.sidebar, { backgroundColor: '#D32F2F' }]} />
+            <View style={styles.announcementMain}>
+              <View style={styles.announcementHeader}>
+                <View style={[styles.announcementIconCircle, { backgroundColor: 'rgba(211, 47, 47, 0.1)' }]}>
+                  <Image source={require('../../assets/images/accident_detected.png')} style={{ width: 30, height: 30 }} resizeMode="contain" />
+                </View>
+                <View style={styles.announcementTextContainer}>
+                  <Text style={styles.announcementTitle}>Accident Detected</Text>
+                  <Text style={styles.announcementText}>An accident has been reported on your usual route. Expect delays of up to 20 minutes.</Text>
+                </View>
+                <Text style={styles.announcementDate}>2d ago</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          {/* Announcement 4 */}
+          <TouchableOpacity style={styles.announcementCard}>
+            <View style={[styles.sidebar, { backgroundColor: '#666' }]} />
+            <View style={styles.announcementMain}>
+              <View style={styles.announcementHeader}>
+                <View style={[styles.announcementIconCircle, { backgroundColor: 'rgba(102, 102, 102, 0.1)' }]}>
+                  <Image source={require('../../assets/images/road_safety_week.png')} style={{ width: 30, height: 30 }} resizeMode="contain" />
+                </View>
+                <View style={styles.announcementTextContainer}>
+                  <Text style={styles.announcementTitle}>Road Safety Week</Text>
+                  <Text style={styles.announcementText}>Join us in promoting road safety. Check your vehicle lights, brakes, and tires regularly.</Text>
+                </View>
+                <Text style={styles.announcementDate}>Jan 14</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
 
       </ScrollView>
 
-      {/* Custom Bottom Footer - Floating */}
-      <View style={[styles.footer, { paddingBottom: insets.bottom > 0 ? insets.bottom : 20 }]}>
-        <TouchableOpacity style={styles.footerItem}>
-          <View style={styles.activeFooterIcon}>
-            <Image source={require('../../assets/images/material-symbols_home-outline-rounded.png')} style={{ width: 24, height: 24, tintColor: '#FFF' }} resizeMode="contain" />
-          </View>
-          <Text style={styles.activeFooterText}>Home</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.footerItem} onPress={() => router.push('/your-cars')}>
-          <Image source={require('../../assets/images/car_icon.png')} style={{ width: 24, height: 24, tintColor: '#666' }} resizeMode="contain" />
-          <Text style={styles.footerText}>Your Car</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.footerItem}>
-          <Image source={require('../../assets/images/mdi_calendar-outline.png')} style={{ width: 24, height: 24, tintColor: '#666' }} resizeMode="contain" />
-          <Text style={styles.footerText}>Appointment</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.footerItem}>
-          <Image source={require('../../assets/images/material-symbols_settings-outline-rounded.png')} style={{ width: 24, height: 24, tintColor: '#666' }} resizeMode="contain" />
-          <Text style={styles.footerText}>Management</Text>
-        </TouchableOpacity>
-      </View>
+      <FloatingFooter activeTab="home" />
     </View >
   );
 }
@@ -148,79 +203,75 @@ const styles = StyleSheet.create({
     backgroundColor: '#050511', // Very dark background
   },
   contentContainer: {
-    flex: 1,
     paddingHorizontal: 20,
     justifyContent: 'flex-start',
+  },
+  headerIconsContainer: {
+    position: 'absolute',
+    right: 20,
+    zIndex: 10,
   },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginBottom: 20,
-    marginTop: 10,
+    paddingHorizontal: 20,
   },
   headerTexts: {
     alignItems: 'flex-start',
   },
   welcomeText: {
-    fontFamily: 'Cairo',
+    fontFamily: 'CairoMedium',
     fontSize: 24,
     color: '#FFF',
-    marginBottom: 4,
-    // textShadowColor: '#000',
-    // textShadowOffset: { width: -1, height: 1 },
-    // textShadowRadius: 1,
-    // Note: React Native text shadow is different from CSS "stroke". using basics for now.
+    lineHeight: 22,
+    marginBottom: 15,
   },
   appTitle: {
-    fontFamily: 'Cairo', // Assuming Cairo is loaded, otherwise standard font
+    fontFamily: 'CairoBold',
     fontSize: 36,
     color: '#FFF',
-    fontWeight: 'bold',
+    lineHeight: 22,
   },
   headerIcons: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 15,
-    marginTop: 10
   },
   notificationBadge: {
     position: 'relative',
   },
   badge: {
     position: 'absolute',
-    top: -5,
-    right: -5,
+    top: -2,
+    right: -2,
     backgroundColor: 'red',
-    borderRadius: 10,
-    width: 16,
-    height: 16,
+    borderRadius: 8,
+    width: 14,
+    height: 14,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1
   },
   badgeText: {
-    fontFamily: 'Cairo',
+    fontFamily: 'CairoBold',
     color: '#FFF',
-    fontSize: 10,
-    fontWeight: 'bold'
+    fontSize: 9,
   },
   profileImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: '#2D5EFF'
+    width: 32,
+    height: 32,
   },
   heroSection: {
     alignItems: 'center',
     marginBottom: 25,
     position: 'relative',
-    height: 200, // Approximating the 202px height
+    height: 200,
     width: '100%',
     borderRadius: 20,
     overflow: 'hidden',
-    backgroundColor: '#000', // Fallback
+    backgroundColor: '#000',
   },
   heroImage: {
     width: '100%',
@@ -232,11 +283,12 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingBottom: 15,
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.3)', // Slight tint near bottom for text readability
+    alignItems: 'flex-start',
+    paddingLeft: 20,
+    backgroundColor: 'rgba(0,0,0,0.3)',
   },
   gerayoText: {
-    fontFamily: 'Cairo',
+    fontFamily: 'CairoMedium',
     fontSize: 24,
     color: '#FFF',
     marginBottom: 2,
@@ -245,7 +297,8 @@ const styles = StyleSheet.create({
   heroSubtitle: {
     fontFamily: 'Cairo',
     fontSize: 16,
-    color: 'rgba(255,255,255,0.8)',
+    color: '#FFF',
+    lineHeight: 22,
   },
   sectionContainer: {
     marginBottom: 20,
@@ -255,165 +308,153 @@ const styles = StyleSheet.create({
     fontFamily: 'Cairo',
     fontSize: 20,
     color: '#FFF',
-    marginBottom: 10,
-    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 15,
+    textAlign: 'left',
+    paddingLeft: 20,
   },
   card: {
-    flexDirection: 'row',
     backgroundColor: '#131722',
-    borderRadius: 10,
-    padding: 15,
-    marginBottom: 12,
-    alignItems: 'center',
+    borderRadius: 24,
+    padding: 18,
+    marginBottom: 16,
     borderWidth: 1,
+  },
+  cardMainRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   cardBlueBorder: {
     borderColor: '#2D5EFF',
   },
   cardRedBorder: {
-    borderColor: '#4E2328', // Dark red as requested
-  },
-  cardDarkBorder: {
-    borderColor: '#262B3B',
+    borderColor: '#4E2328',
   },
   cardIconContainerBlue: {
-    width: 40,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: 'rgba(45, 94, 255, 0.1)',
+    width: 49,
+    height: 44,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 15,
   },
   cardIconContainerRed: {
-    width: 40,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: 'rgba(211, 47, 47, 0.1)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 15,
-  },
-  cardIconContainerPurple: {
-    width: 40,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: 'rgba(160, 32, 240, 0.1)',
+    width: 49,
+    height: 44,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 15,
   },
   cardContent: {
     flex: 1,
-  },
-  cardHeaderRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 4,
+    alignItems: 'flex-start',
+    paddingTop: 2, // Slight offset to ensure top is lower than icon top
   },
   plateNumber: {
-    fontFamily: 'Cairo',
+    fontFamily: 'CairoMedium',
     color: '#FFF',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  daysLeftContainer: {
-    alignItems: 'flex-end'
-  },
-  daysLeftBlue: {
-    fontFamily: 'Cairo',
-    color: '#2D5EFF',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  daysLeftRed: {
-    fontFamily: 'Cairo',
-    color: '#D32F2F',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  daysLeftLabel: {
-    fontFamily: 'Cairo',
-    color: '#999',
-    fontSize: 10
+    fontSize: 15,
+    lineHeight: 22,
+    marginBottom: -3,
+    paddingLeft: 4,
   },
   carModel: {
     fontFamily: 'Cairo',
     color: '#FFF',
-    fontSize: 16,
-    fontWeight: '700',
-    marginBottom: 4,
+    fontSize: 16, // Matching subtitle style size
+  },
+  daysLeftContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 45,
+  },
+  daysLeftBlue: {
+    fontFamily: 'Cairo',
+    color: '#2D5EFF',
+    fontSize: 20,
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+  daysLeftRed: {
+    fontFamily: 'Cairo',
+    color: '#D32F2F',
+    fontSize: 20,
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+  daysLeftLabel: {
+    fontFamily: 'Cairo',
+    color: '#FFF',
+    fontSize: 11,
+    lineHeight: 22,
+    marginTop: -2,
+    textAlign: 'center',
+  },
+  cardDivider: {
+    height: 1,
+    backgroundColor: 'rgba(151, 151, 151, 0.15)',
+    marginTop: 18,
+    marginBottom: 12,
   },
   nextInspection: {
     fontFamily: 'Cairo',
-    color: '#888',
-    fontSize: 12,
+    color: '#FFF',
+    fontSize: 14, // Cairo Regular around 13-15
+    lineHeight: 22,
+    textAlign: 'left',
+  },
+  announcementCard: {
+    backgroundColor: '#131722',
+    borderRadius: 16,
+    flexDirection: 'row',
+    overflow: 'hidden',
+    marginBottom: 12,
+    minHeight: 100,
+  },
+  sidebar: {
+    width: 6,
+    height: '100%',
+  },
+  announcementMain: {
+    flex: 1,
+    padding: 15,
+  },
+  announcementHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  announcementIconCircle: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: 'rgba(45, 94, 255, 0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  announcementTextContainer: {
+    flex: 1,
+    marginRight: 8,
   },
   announcementTitle: {
-    fontFamily: 'Cairo',
+    fontFamily: 'CairoMedium',
     color: '#FFF',
-    fontSize: 16,
-    fontWeight: 'bold'
-  },
-  announcementDate: {
-    fontFamily: 'Cairo',
-    color: '#888',
-    fontSize: 12
+    fontSize: 20,
+    lineHeight: 22,
+    marginBottom: 4,
   },
   announcementText: {
     fontFamily: 'Cairo',
-    color: '#AAA',
-    fontSize: 12,
-    lineHeight: 16
+    color: '#FFF',
+    fontSize: 15, // Cairo Regular around 14-16
+    lineHeight: 22,
+    opacity: 0.8,
   },
-  footer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
-    height: 70, // Fixed height from spec
-    backgroundColor: '#161B2B',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#262B3B',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    // Shadow for elevation
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.30,
-    shadowRadius: 4.65,
-    elevation: 8,
-  },
-  footerItem: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  activeFooterIcon: {
-    backgroundColor: '#2D5EFF',
-    width: 36,
-    height: 36,
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 2
-  },
-  activeFooterText: {
+  announcementDate: {
     fontFamily: 'Cairo',
     color: '#FFF',
-    fontSize: 10,
-    fontWeight: 'bold'
+    fontSize: 14,
+    opacity: 0.6,
   },
-  footerText: {
-    fontFamily: 'Cairo',
-    color: '#666',
-    fontSize: 10,
-    marginTop: 4
-  }
 });

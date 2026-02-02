@@ -1,5 +1,6 @@
+import { FloatingFooter } from '@/components/FloatingFooter';
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import {
@@ -102,21 +103,28 @@ export default function YourCarsScreen() {
             <ScrollView
                 contentContainerStyle={[
                     styles.contentContainer,
-                    { paddingTop: insets.top + 20, paddingBottom: 100 },
+                    { paddingBottom: 120 },
                 ]}
                 showsVerticalScrollIndicator={false}
             >
-                {/* Header Section */}
-                <View style={styles.header}>
+                {/* Header Section - 35px from top (matching Home) */}
+                <View style={[styles.header, { marginTop: 35 }]}>
                     <View>
                         <Text style={styles.pageTitle}>Your Cars</Text>
                         <Text style={styles.vehicleCount}>
                             {cars.length} vehicle{cars.length !== 1 ? 's' : ''} registered
                         </Text>
                     </View>
-                    <TouchableOpacity style={styles.addButton} onPress={openBottomSheet}>
-                        <Ionicons name="add" size={20} color="#FFF" />
-                        <Text style={styles.addButtonText}>Add Car</Text>
+                    <TouchableOpacity onPress={openBottomSheet}>
+                        <LinearGradient
+                            colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 0 }}
+                            style={styles.addButton}
+                        >
+                            <Ionicons name="add" size={20} color="#FFF" />
+                            <Text style={styles.addButtonText}>Add Car</Text>
+                        </LinearGradient>
                     </TouchableOpacity>
                 </View>
 
@@ -124,8 +132,20 @@ export default function YourCarsScreen() {
                 <View style={styles.carsContainer}>
                     {cars.map((car) => (
                         <TouchableOpacity key={car.id} style={styles.carCard}>
-                            <View style={styles.carIconContainer}>
-                                <Ionicons name="car-outline" size={28} color="#5B7FFF" />
+                            <View style={styles.carCardLeft}>
+                                <LinearGradient
+                                    colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    style={styles.carIconContainer}
+                                >
+                                    <Image
+                                        source={require('../../assets/images/car_icon_on_your_cars_page.png')}
+                                        style={styles.carIconImage}
+                                        resizeMode="contain"
+                                    />
+                                </LinearGradient>
+                                <View style={styles.bottomSpace} />
                             </View>
                             <View style={styles.carDetails}>
                                 <Text style={styles.plateNumber}>{car.plateNumber}</Text>
@@ -133,9 +153,12 @@ export default function YourCarsScreen() {
                                     {car.brand} {car.model} • {car.year}
                                 </Text>
                                 <Text style={styles.carColor}>Color: {car.color}</Text>
-                                <View style={styles.inspectionRow}>
-                                    <Text style={styles.inspectionLabel}>Next Inspection</Text>
-                                    <Text style={styles.inspectionDate}>{car.nextInspection}</Text>
+                                <View style={styles.dividerContainer}>
+                                    <View style={styles.cardDivider} />
+                                    <View style={styles.inspectionRow}>
+                                        <Text style={styles.inspectionLabel}>Next Inspection</Text>
+                                        <Text style={styles.inspectionDate}>{car.nextInspection}</Text>
+                                    </View>
                                 </View>
                             </View>
                         </TouchableOpacity>
@@ -198,44 +221,28 @@ export default function YourCarsScreen() {
 
                             {/* Submit Button */}
                             <TouchableOpacity
-                                style={[
-                                    styles.submitButton,
-                                    !plateNumber.trim() && styles.submitButtonDisabled,
-                                ]}
                                 onPress={handleAddCar}
                                 disabled={!plateNumber.trim()}
+                                style={!plateNumber.trim() ? { opacity: 0.5 } : {}}
                             >
-                                <Text style={styles.submitButtonText}>Add Car</Text>
+                                <LinearGradient
+                                    colors={['#3B6CF2', '#5D5FEF', '#7B4DFF']}
+                                    start={{ x: 0, y: 0 }}
+                                    end={{ x: 1, y: 0 }}
+                                    style={[
+                                        styles.submitButton,
+                                        !plateNumber.trim() && styles.submitButtonDisabled,
+                                    ]}
+                                >
+                                    <Text style={styles.submitButtonText}>Add Car</Text>
+                                </LinearGradient>
                             </TouchableOpacity>
                         </View>
                     </Animated.View>
                 </KeyboardAvoidingView>
             </Modal>
 
-            {/* Custom Bottom Footer - Floating */}
-            <View style={[styles.footer, { paddingBottom: insets.bottom > 0 ? insets.bottom : 20 }]}>
-                <TouchableOpacity style={styles.footerItem} onPress={() => router.push('/')}>
-                    <Image source={require('../../assets/images/material-symbols_home-outline-rounded.png')} style={{ width: 24, height: 24, tintColor: '#666' }} resizeMode="contain" />
-                    <Text style={styles.footerText}>Home</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.footerItem}>
-                    <View style={styles.activeFooterIcon}>
-                        <Image source={require('../../assets/images/car_icon.png')} style={{ width: 24, height: 24, tintColor: '#FFF' }} resizeMode="contain" />
-                    </View>
-                    <Text style={styles.activeFooterText}>Your Car</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.footerItem}>
-                    <Image source={require('../../assets/images/mdi_calendar-outline.png')} style={{ width: 24, height: 24, tintColor: '#666' }} resizeMode="contain" />
-                    <Text style={styles.footerText}>Appointment</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.footerItem}>
-                    <Image source={require('../../assets/images/material-symbols_settings-outline-rounded.png')} style={{ width: 24, height: 24, tintColor: '#666' }} resizeMode="contain" />
-                    <Text style={styles.footerText}>Management</Text>
-                </TouchableOpacity>
-            </View>
+            <FloatingFooter activeTab="your-cars" />
         </View>
     );
 }
@@ -251,28 +258,27 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         marginBottom: 25,
     },
     pageTitle: {
-        fontFamily: 'Cairo',
+        fontFamily: 'CairoBold',
         fontSize: 32,
-        fontWeight: 'bold',
         color: '#FFF',
         marginBottom: 4,
     },
     vehicleCount: {
         fontFamily: 'Cairo',
-        fontSize: 13,
+        fontSize: 14, // Reduced slightly from 15
         color: '#999',
+        marginTop: -10, // Moved even closer to title
     },
     addButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#5B7FFF',
         paddingHorizontal: 16,
         paddingVertical: 10,
-        borderRadius: 20,
+        borderRadius: 10, // Reduced from 20
         gap: 6,
     },
     addButtonText: {
@@ -285,59 +291,87 @@ const styles = StyleSheet.create({
         gap: 16,
     },
     carCard: {
+        width: '100%', // Responsive width
+        height: 113,
         flexDirection: 'row',
-        backgroundColor: '#1A1F2E',
-        borderRadius: 16,
-        padding: 16,
+        backgroundColor: '#131722',
+        borderRadius: 10,
+        padding: 14,
         borderWidth: 1,
         borderColor: '#262B3B',
+        marginBottom: 12,
+    },
+    carIconImage: {
+        width: 28,
+        height: 28,
+        tintColor: '#FFF',
     },
     carIconContainer: {
-        width: 60,
-        height: 60,
-        borderRadius: 12,
-        backgroundColor: 'rgba(91, 127, 255, 0.15)',
+        width: 49,
+        height: 44,
+        borderRadius: 10, // Reduced radius
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 16,
+    },
+    carCardLeft: {
+        marginRight: 18,
+        alignItems: 'center',
+    },
+    bottomSpace: {
+        flex: 1,
     },
     carDetails: {
         flex: 1,
+        paddingTop: 2, // Align with top of icon
     },
     plateNumber: {
-        fontFamily: 'Cairo',
+        fontFamily: 'CairoBold',
         fontSize: 18,
-        fontWeight: 'bold',
         color: '#FFF',
-        marginBottom: 4,
+        lineHeight: 22, // Controlled height
+        marginBottom: -1,
     },
     carInfo: {
         fontFamily: 'Cairo',
-        fontSize: 14,
-        color: '#AAA',
-        marginBottom: 2,
+        fontSize: 12,
+        color: 'rgba(255, 255, 255, 0.4)',
+        lineHeight: 16, // Controlled height
+        marginTop: 0,
+        marginBottom: -1,
     },
     carColor: {
         fontFamily: 'Cairo',
-        fontSize: 13,
-        color: '#888',
-        marginBottom: 12,
+        fontSize: 11,
+        color: 'rgba(255, 255, 255, 0.4)',
+        lineHeight: 14,
+        marginBottom: 9, // Increased from 6
+    },
+    dividerContainer: {
+        marginLeft: -67, // Pull back to align with icon container (49 width + 18 margin)
+    },
+    cardDivider: {
+        height: 1,
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        marginBottom: 3, // Reduced from 6
+        width: '100%',
     },
     inspectionRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        paddingLeft: 4, // "Next Inspection" starts few pixels after line starts
+        width: '100%',
     },
     inspectionLabel: {
         fontFamily: 'Cairo',
-        fontSize: 12,
+        fontSize: 11, // Reduced from 12
         color: '#999',
     },
     inspectionDate: {
         fontFamily: 'Cairo',
-        fontSize: 13,
+        fontSize: 12,
         fontWeight: '600',
-        color: '#5B7FFF',
+        color: '#3B6CF2',
     },
     modalContainer: {
         flex: 1,
@@ -361,9 +395,8 @@ const styles = StyleSheet.create({
         marginBottom: 24,
     },
     sheetTitle: {
-        fontFamily: 'Cairo',
+        fontFamily: 'CairoBold',
         fontSize: 22,
-        fontWeight: 'bold',
         color: '#FFF',
     },
     closeButton: {
@@ -403,7 +436,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     submitButton: {
-        backgroundColor: '#5B7FFF',
         borderRadius: 12,
         paddingVertical: 16,
         alignItems: 'center',
@@ -414,57 +446,8 @@ const styles = StyleSheet.create({
         opacity: 0.5,
     },
     submitButtonText: {
-        fontFamily: 'Cairo',
+        fontFamily: 'CairoBold',
         fontSize: 16,
-        fontWeight: 'bold',
         color: '#FFF',
     },
-    footer: {
-        position: 'absolute',
-        bottom: 20,
-        left: 20,
-        right: 20,
-        height: 70,
-        backgroundColor: '#161B2B',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#262B3B',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        paddingHorizontal: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.30,
-        shadowRadius: 4.65,
-        elevation: 8,
-    },
-    footerItem: {
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    activeFooterIcon: {
-        backgroundColor: '#2D5EFF',
-        width: 36,
-        height: 36,
-        borderRadius: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 2
-    },
-    activeFooterText: {
-        fontFamily: 'Cairo',
-        color: '#FFF',
-        fontSize: 10,
-        fontWeight: 'bold'
-    },
-    footerText: {
-        fontFamily: 'Cairo',
-        color: '#666',
-        fontSize: 10,
-        marginTop: 4
-    }
 });
