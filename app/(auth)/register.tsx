@@ -1,7 +1,7 @@
 import {
-    Cairo_500Medium,
-    Cairo_700Bold,
-    useFonts,
+  Cairo_500Medium,
+  Cairo_700Bold,
+  useFonts,
 } from "@expo-google-fonts/cairo";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -9,20 +9,241 @@ import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useRef, useState } from "react";
 import {
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    useWindowDimensions,
-    View,
+  Animated,
+  Easing,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
 } from "react-native";
 import { AnimatedScreen } from "../../components/AnimatedScreen";
 import { HapticButton } from "../../components/HapticButton";
 
+// ── Facebook-style floating label input ──────────────────────────────────────
+interface FBFieldProps {
+  label: string;
+  value: string;
+  onChangeText: (v: string) => void;
+  onFocus: () => void;
+  onBlur: () => void;
+  isFocused: boolean;
+  hasError: boolean;
+  errorText?: string;
+  secureTextEntry?: boolean;
+  keyboardType?: any;
+  autoCapitalize?: any;
+  maxLength?: number;
+  returnKeyType?: "next" | "done";
+  onSubmitEditing?: () => void;
+  inputRef?: React.RefObject<TextInput>;
+  rightSlot?: React.ReactNode;
+  prefix?: React.ReactNode;
+  entranceDelay?: number;
+  h: (n: number) => number;
+  moderateScale: (n: number, f?: number) => number;
+}
+
+function FBField({
+  label,
+  value,
+  onChangeText,
+  onFocus,
+  onBlur,
+  isFocused,
+  hasError,
+  errorText,
+  secureTextEntry,
+  keyboardType,
+  autoCapitalize,
+  maxLength,
+  returnKeyType = "next",
+  onSubmitEditing,
+  inputRef,
+  rightSlot,
+  prefix,
+  entranceDelay = 0,
+  h,
+  moderateScale,
+}: FBFieldProps) {
+  const labelAnim = useRef(
+    new Animated.Value(value.length > 0 ? 1 : 0),
+  ).current;
+  const borderAnim = useRef(new Animated.Value(0)).current;
+  const shakeAnim = useRef(new Animated.Value(0)).current;
+  const entranceAnim = useRef(new Animated.Value(0)).current;
+  const prevError = useRef("");
+  const hasValue = value.length > 0;
+
+  // Staggered entrance slide-up + fade
+  React.useEffect(() => {
+    Animated.timing(entranceAnim, {
+      toValue: 1,
+      duration: 340,
+      delay: entranceDelay,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  // Float label when focused or filled — exactly like Facebook
+  React.useEffect(() => {
+    Animated.timing(labelAnim, {
+      toValue: isFocused || hasValue ? 1 : 0,
+      duration: 160,
+      easing: Easing.out(Easing.quad),
+      useNativeDriver: false,
+    }).start();
+  }, [isFocused, hasValue]);
+
+  // Border: idle=#CDD1D4  focused=#1877F2  error=#FA3E3E
+  React.useEffect(() => {
+    const to = hasError ? 2 : isFocused ? 1 : 0;
+    Animated.timing(borderAnim, {
+      toValue: to,
+      duration: 180,
+      easing: Easing.out(Easing.quad),
+      useNativeDriver: false,
+    }).start();
+  }, [isFocused, hasError]);
+
+  // One-time shake when a new error arrives
+  React.useEffect(() => {
+    if (hasError && errorText && errorText !== prevError.current) {
+      prevError.current = errorText;
+      Animated.sequence([
+        Animated.timing(shakeAnim, {
+          toValue: 6,
+          duration: 50,
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: -6,
+          duration: 50,
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: 4,
+          duration: 40,
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: -4,
+          duration: 40,
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: 0,
+          duration: 30,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }
+    if (!hasError) prevError.current = "";
+  }, [hasError, errorText]);
+
+  const borderColor = borderAnim.interpolate({
+    inputRange: [0, 1, 2],
+    outputRange: ["#CDD1D4", "#1877F2", "#FA3E3E"],
+  });
+  const labelTop = labelAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [h(15), h(5)],
+  });
+  const labelSize = labelAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [moderateScale(15), moderateScale(11)],
+  });
+  const labelColor = borderAnim.interpolate({
+    inputRange: [0, 1, 2],
+    outputRange: ["#90949C", "#1877F2", "#FA3E3E"],
+  });
+  const entranceY = entranceAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [12, 0],
+  });
+
+  return (
+    <Animated.View
+      style={{ opacity: entranceAnim, transform: [{ translateY: entranceY }] }}
+    >
+      <Animated.View
+        style={[
+          styles.fbField,
+          {
+            borderColor,
+            height: h(52),
+            transform: [{ translateX: shakeAnim }],
+          },
+        ]}
+      >
+        {prefix && <View style={{ height: h(52) }}>{prefix}</View>}
+
+        <View style={styles.fbFieldInner}>
+          {/* Floating label — only when no prefix */}
+          {!prefix && (
+            <Animated.Text
+              style={[
+                styles.fbLabel,
+                { top: labelTop, fontSize: labelSize, color: labelColor },
+              ]}
+              pointerEvents="none"
+            >
+              {label}
+            </Animated.Text>
+          )}
+          {/* Static mini label alongside phone prefix */}
+          {prefix && (
+            <Text
+              style={[styles.fbLabelStatic, { fontSize: moderateScale(11) }]}
+            >
+              {label}
+            </Text>
+          )}
+          <TextInput
+            ref={inputRef}
+            style={[
+              styles.fbInput,
+              {
+                fontSize: moderateScale(16),
+                paddingTop: prefix ? h(4) : h(22),
+                paddingBottom: h(6),
+              },
+            ]}
+            value={value}
+            onChangeText={onChangeText}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            placeholder=""
+            placeholderTextColor="transparent"
+            secureTextEntry={secureTextEntry}
+            keyboardType={keyboardType}
+            autoCapitalize={autoCapitalize}
+            maxLength={maxLength}
+            returnKeyType={returnKeyType}
+            onSubmitEditing={onSubmitEditing}
+            selectionColor="#1877F2"
+            cursorColor="#1877F2"
+          />
+        </View>
+
+        {rightSlot && <View style={styles.fbFieldRight}>{rightSlot}</View>}
+      </Animated.View>
+
+      {hasError && errorText ? (
+        <Text style={[styles.fbErrorText, { fontSize: moderateScale(12) }]}>
+          {errorText}
+        </Text>
+      ) : null}
+    </Animated.View>
+  );
+}
+
+// ─── Main Screen ─────────────────────────────────────────────────────────────
 export default function RegisterScreen() {
   const { height: screenHeight, width: screenWidth } = useWindowDimensions();
   const router = useRouter();
@@ -32,13 +253,12 @@ export default function RegisterScreen() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const phoneRef = useRef<TextInput>(null);
   const emailRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
-  const confirmPasswordRef = useRef<TextInput>(null);
+  const confirmRef = useRef<TextInput>(null);
 
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
@@ -46,7 +266,6 @@ export default function RegisterScreen() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // Validation states
   const [touched, setTouched] = useState({
     fullName: false,
     phone: false,
@@ -54,7 +273,6 @@ export default function RegisterScreen() {
     password: false,
     confirmPassword: false,
   });
-
   const [errors, setErrors] = useState({
     fullName: "",
     phone: "",
@@ -63,86 +281,58 @@ export default function RegisterScreen() {
     confirmPassword: "",
   });
 
-  // Strong validation helpers
-  const validateFullName = (name: string) =>
-    name.length === 0
-      ? ""
-      : name.length < 3
-        ? "Full name must be at least 3 characters"
-        : "";
-  const validatePhone = (num: string) =>
-    num.length === 0
-      ? ""
-      : !/^07\d{8}$/.test(num)
-        ? "Enter valid Rwanda number (e.g. 0781234567)"
-        : "";
-  const validateEmail = (em: string) =>
-    em.length === 0
-      ? ""
-      : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)
-        ? "Please enter a valid email address"
-        : "";
-  const validatePassword = (pw: string) => {
-    if (pw.length === 0) return "";
-    if (pw.length < 8) return "Password must be at least 8 characters";
-    if (!/[A-Z]/.test(pw)) return "Must contain 1 uppercase letter";
-    if (!/[a-z]/.test(pw)) return "Must contain 1 lowercase letter";
-    if (!/\d/.test(pw)) return "Must contain 1 number";
-    if (!/[^A-Za-z0-9]/.test(pw))
-      return "Must contain 1 special character (!@#$ etc.)";
-    return "";
-  };
-  const validateConfirmPassword = (confirm: string) =>
-    confirm.length === 0
-      ? ""
-      : confirm !== password
-        ? "Passwords do not match"
-        : "";
+  const buttonScale = useRef(new Animated.Value(1)).current;
+  const checkboxScale = useRef(new Animated.Value(1)).current;
 
-  // Handle blur + live error update
+  // Facebook-style: short, friendly messages; no strength bars or icons
+  const validateFullName = (v: string) =>
+    v.length > 0 && v.trim().length < 3
+      ? "Enter your full name (at least 3 characters)"
+      : "";
+  const validatePhone = (v: string) =>
+    v.length > 0 && !/^07\d{8}$/.test(v)
+      ? "Enter a valid Rwanda mobile number"
+      : "";
+  const validateEmail = (v: string) =>
+    v.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+      ? "Enter a valid email address"
+      : "";
+  const validatePassword = (v: string) =>
+    v.length > 0 && v.length < 6
+      ? "Your password must be at least 6 characters"
+      : "";
+  const validateConfirmPassword = (v: string) =>
+    v.length > 0 && v !== password
+      ? "Your passwords don't match. Try again."
+      : "";
+
   const handleBlur = (field: keyof typeof touched) => {
     setTouched((prev) => ({ ...prev, [field]: true }));
     setFocusedField(null);
-
-    let error = "";
-    switch (field) {
-      case "fullName":
-        error = validateFullName(fullName);
-        break;
-      case "phone":
-        error = validatePhone(phone);
-        break;
-      case "email":
-        error = validateEmail(email);
-        break;
-      case "password":
-        error = validatePassword(password);
-        break;
-      case "confirmPassword":
-        error = validateConfirmPassword(confirmPassword);
-        break;
-    }
-    setErrors((prev) => ({ ...prev, [field]: error }));
+    let err = "";
+    if (field === "fullName") err = validateFullName(fullName);
+    else if (field === "phone") err = validatePhone(phone);
+    else if (field === "email") err = validateEmail(email);
+    else if (field === "password") err = validatePassword(password);
+    else if (field === "confirmPassword")
+      err = validateConfirmPassword(confirmPassword);
+    setErrors((prev) => ({ ...prev, [field]: err }));
   };
 
-  // Auto-update confirm error when password changes
   React.useEffect(() => {
-    if (touched.confirmPassword) {
+    if (touched.confirmPassword)
       setErrors((prev) => ({
         ...prev,
         confirmPassword: validateConfirmPassword(confirmPassword),
       }));
-    }
   }, [password, touched.confirmPassword]);
 
-  // Form completely valid?
   const isFormValid =
     fullName.trim().length >= 3 &&
     /^07\d{8}$/.test(phone) &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-    validatePassword(password) === "" &&
-    confirmPassword === password &&
-    confirmPassword.length >= 8;
+    password.length >= 6 &&
+    confirmPassword === password;
 
   const h = (size: number) => (size / 812) * screenHeight;
   const w = (size: number) => (size / 375) * screenWidth;
@@ -152,24 +342,58 @@ export default function RegisterScreen() {
   if (!fontsLoaded)
     return <View style={{ flex: 1, backgroundColor: "#1a1a3a" }} />;
 
-  const handleScroll = (event: any) => {
-    const y = event.nativeEvent.contentOffset.y;
-    setScrolled(y > 10);
+  const handleScroll = (e: any) =>
+    setScrolled(e.nativeEvent.contentOffset.y > 10);
+
+  const handleRegister = () => {
+    // Reveal all errors simultaneously — Facebook behaviour
+    setTouched({
+      fullName: true,
+      phone: true,
+      email: true,
+      password: true,
+      confirmPassword: true,
+    });
+    setErrors({
+      fullName: validateFullName(fullName),
+      phone: validatePhone(phone),
+      email: validateEmail(email),
+      password: validatePassword(password),
+      confirmPassword: validateConfirmPassword(confirmPassword),
+    });
+    Animated.sequence([
+      Animated.timing(buttonScale, {
+        toValue: 0.95,
+        duration: 70,
+        useNativeDriver: true,
+      }),
+      Animated.spring(buttonScale, {
+        toValue: 1,
+        useNativeDriver: true,
+        tension: 220,
+        friction: 6,
+      }),
+    ]).start(() => {
+      if (isFormValid) router.push("/(auth)/verify-phone");
+    });
   };
 
-  const getBorderColor = (fieldName: string) => {
-    const hasError =
-      touched[fieldName as keyof typeof touched] &&
-      errors[fieldName as keyof typeof errors];
-    if (hasError) return "#E53935";
-    if (focusedField === fieldName) return "#0056b3";
-    return "#E8E8E8";
+  const toggleRememberMe = () => {
+    Animated.sequence([
+      Animated.timing(checkboxScale, {
+        toValue: 0.72,
+        duration: 65,
+        useNativeDriver: true,
+      }),
+      Animated.spring(checkboxScale, {
+        toValue: 1,
+        useNativeDriver: true,
+        tension: 260,
+        friction: 6,
+      }),
+    ]).start();
+    setRememberMe(!rememberMe);
   };
-
-  const fieldBorder = (fieldName: string) => ({
-    borderWidth: 1.5,
-    borderColor: getBorderColor(fieldName),
-  });
 
   const dynamicStyles = {
     formContainer: {
@@ -184,20 +408,7 @@ export default function RegisterScreen() {
     },
   };
 
-  const handleRegister = () => {
-    if (!isFormValid) {
-      // Force show all errors
-      setTouched({
-        fullName: true,
-        phone: true,
-        email: true,
-        password: true,
-        confirmPassword: true,
-      });
-      return;
-    }
-    router.push("/(auth)/verify-phone");
-  };
+  const fieldHasError = (f: keyof typeof errors) => touched[f] && !!errors[f];
 
   return (
     <LinearGradient
@@ -209,10 +420,10 @@ export default function RegisterScreen() {
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flex: 1 }}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
         >
           <StatusBar style="light" />
 
-          {/* Header */}
           <View style={[styles.header, { top: h(30) }]}>
             <Text style={[styles.headerTitle, dynamicStyles.headerText]}>
               Gerayo
@@ -225,6 +436,8 @@ export default function RegisterScreen() {
             onScroll={handleScroll}
             scrollEventThrottle={16}
             bounces={false}
+            keyboardShouldPersistTaps="handled"
+            keyboardDismissMode="interactive"
           >
             <View style={[styles.formContainer, dynamicStyles.formContainer]}>
               <View
@@ -242,261 +455,172 @@ export default function RegisterScreen() {
                   Create Account
                 </Text>
 
-                <View style={[styles.inputGroup, { gap: h(12) }]}>
-                  {/* Full Name */}
-                  <View style={[styles.inputWrapper, fieldBorder("fullName")]}>
-                    <TextInput
-                      placeholder="Full names"
-                      style={[
-                        styles.input,
-                        { height: h(44), fontSize: moderateScale(16) },
-                      ]}
-                      placeholderTextColor="#ADADAD"
-                      value={fullName}
-                      onChangeText={setFullName}
-                      returnKeyType="next"
-                      onSubmitEditing={() => phoneRef.current?.focus()}
-                      onFocus={() => setFocusedField("fullName")}
-                      onBlur={() => handleBlur("fullName")}
-                      selectionColor="#0056b3"
-                      cursorColor="#0056b3"
-                    />
-                    {fullName.length >= 3 && !errors.fullName && (
-                      <Ionicons
-                        name="checkmark-circle"
-                        size={moderateScale(20)}
-                        color="#4CAF50"
-                        style={styles.inputIcon}
-                      />
-                    )}
-                  </View>
-                  {touched.fullName && errors.fullName ? (
-                    <Text style={styles.errorText}>{errors.fullName}</Text>
-                  ) : null}
+                <View style={[styles.inputGroup, { gap: h(14) }]}>
+                  <FBField
+                    label="Full name"
+                    value={fullName}
+                    onChangeText={setFullName}
+                    onFocus={() => setFocusedField("fullName")}
+                    onBlur={() => handleBlur("fullName")}
+                    isFocused={focusedField === "fullName"}
+                    hasError={fieldHasError("fullName")}
+                    errorText={errors.fullName}
+                    returnKeyType="next"
+                    onSubmitEditing={() => phoneRef.current?.focus()}
+                    entranceDelay={60}
+                    h={h}
+                    moderateScale={moderateScale}
+                  />
 
-                  {/* Phone */}
-                  <View style={[styles.phoneWrapper, fieldBorder("phone")]}>
-                    <View style={styles.phoneContainer}>
+                  <FBField
+                    label="Phone number"
+                    value={phone}
+                    onChangeText={setPhone}
+                    onFocus={() => setFocusedField("phone")}
+                    onBlur={() => handleBlur("phone")}
+                    isFocused={focusedField === "phone"}
+                    hasError={fieldHasError("phone")}
+                    errorText={errors.phone}
+                    keyboardType="phone-pad"
+                    maxLength={10}
+                    returnKeyType="next"
+                    onSubmitEditing={() => emailRef.current?.focus()}
+                    inputRef={phoneRef}
+                    entranceDelay={120}
+                    h={h}
+                    moderateScale={moderateScale}
+                    prefix={
                       <TouchableOpacity
                         style={[
                           styles.countryCode,
-                          { height: h(44), width: w(80) },
+                          { height: h(52), width: w(80) },
                         ]}
+                        activeOpacity={0.75}
                       >
                         <Text
                           style={[
                             styles.countryCodeText,
-                            { fontSize: moderateScale(16) },
+                            { fontSize: moderateScale(15) },
                           ]}
                         >
                           RW
                         </Text>
                         <Ionicons
                           name="chevron-down"
-                          size={moderateScale(16)}
+                          size={moderateScale(14)}
                           color="#fff"
                         />
                       </TouchableOpacity>
-                      <TextInput
-                        ref={phoneRef}
-                        placeholder="Phone number"
-                        style={[
-                          styles.input,
-                          styles.phoneInput,
-                          { height: h(44), fontSize: moderateScale(16) },
-                        ]}
-                        keyboardType="phone-pad"
-                        placeholderTextColor="#ADADAD"
-                        value={phone}
-                        onChangeText={setPhone}
-                        returnKeyType="next"
-                        onSubmitEditing={() => emailRef.current?.focus()}
-                        onFocus={() => setFocusedField("phone")}
-                        onBlur={() => handleBlur("phone")}
-                        selectionColor="#0056b3"
-                        cursorColor="#0056b3"
-                        maxLength={10}
-                      />
-                    </View>
-                    {/^07\d{8}$/.test(phone) && (
-                      <Ionicons
-                        name="checkmark-circle"
-                        size={moderateScale(20)}
-                        color="#4CAF50"
-                        style={styles.inputIcon}
-                      />
-                    )}
-                  </View>
-                  {touched.phone && errors.phone ? (
-                    <Text style={styles.errorText}>{errors.phone}</Text>
-                  ) : null}
+                    }
+                  />
 
-                  {/* Email */}
-                  <View style={[styles.inputWrapper, fieldBorder("email")]}>
-                    <TextInput
-                      ref={emailRef}
-                      placeholder="Email"
-                      style={[
-                        styles.input,
-                        { height: h(44), fontSize: moderateScale(16) },
-                      ]}
-                      keyboardType="email-address"
-                      placeholderTextColor="#ADADAD"
-                      autoCapitalize="none"
-                      value={email}
-                      onChangeText={setEmail}
-                      returnKeyType="next"
-                      onSubmitEditing={() => passwordRef.current?.focus()}
-                      onFocus={() => setFocusedField("email")}
-                      onBlur={() => handleBlur("email")}
-                      selectionColor="#0056b3"
-                      cursorColor="#0056b3"
-                    />
-                    {validateEmail(email) === "" && email.length > 0 && (
-                      <Ionicons
-                        name="checkmark-circle"
-                        size={moderateScale(20)}
-                        color="#4CAF50"
-                        style={styles.inputIcon}
-                      />
-                    )}
-                  </View>
-                  {touched.email && errors.email ? (
-                    <Text style={styles.errorText}>{errors.email}</Text>
-                  ) : null}
+                  <FBField
+                    label="Email address"
+                    value={email}
+                    onChangeText={setEmail}
+                    onFocus={() => setFocusedField("email")}
+                    onBlur={() => handleBlur("email")}
+                    isFocused={focusedField === "email"}
+                    hasError={fieldHasError("email")}
+                    errorText={errors.email}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    returnKeyType="next"
+                    onSubmitEditing={() => passwordRef.current?.focus()}
+                    inputRef={emailRef}
+                    entranceDelay={180}
+                    h={h}
+                    moderateScale={moderateScale}
+                  />
 
-                  {/* Password */}
-                  <View
-                    style={[
-                      styles.passwordContainer,
-                      { height: h(44) },
-                      fieldBorder("password"),
-                    ]}
-                  >
-                    <TextInput
-                      ref={passwordRef}
-                      placeholder="Password"
-                      style={[
-                        styles.passwordInput,
-                        { fontSize: moderateScale(16) },
-                      ]}
-                      secureTextEntry={!showPassword}
-                      placeholderTextColor="#ADADAD"
-                      value={password}
-                      onChangeText={setPassword}
-                      returnKeyType="next"
-                      onSubmitEditing={() =>
-                        confirmPasswordRef.current?.focus()
-                      }
-                      onFocus={() => setFocusedField("password")}
-                      onBlur={() => handleBlur("password")}
-                      selectionColor="#0056b3"
-                      cursorColor="#0056b3"
-                    />
-                    <View style={styles.passwordActions}>
-                      {validatePassword(password) === "" &&
-                        password.length > 0 && (
-                          <Ionicons
-                            name="checkmark-circle"
-                            size={moderateScale(20)}
-                            color="#4CAF50"
-                            style={{ marginRight: 8 }}
-                          />
-                        )}
+                  {/* Password — "Show"/"Hide" text label exactly like Facebook */}
+                  <FBField
+                    label="New password"
+                    value={password}
+                    onChangeText={setPassword}
+                    onFocus={() => setFocusedField("password")}
+                    onBlur={() => handleBlur("password")}
+                    isFocused={focusedField === "password"}
+                    hasError={fieldHasError("password")}
+                    errorText={errors.password}
+                    secureTextEntry={!showPassword}
+                    returnKeyType="next"
+                    onSubmitEditing={() => confirmRef.current?.focus()}
+                    inputRef={passwordRef}
+                    entranceDelay={240}
+                    h={h}
+                    moderateScale={moderateScale}
+                    rightSlot={
                       <TouchableOpacity
                         onPress={() => setShowPassword(!showPassword)}
+                        hitSlop={{ top: 12, bottom: 12, left: 10, right: 10 }}
+                        activeOpacity={0.6}
                       >
-                        <Image
-                          source={require("../../assets/images/Group 547.png")}
-                          style={{
-                            width: w(15),
-                            height: h(7.5),
-                            tintColor: "#7F7F7F",
-                          }}
-                          resizeMode="contain"
-                        />
+                        <Text
+                          style={[
+                            styles.showHideText,
+                            { fontSize: moderateScale(14) },
+                          ]}
+                        >
+                          {showPassword ? "Hide" : "Show"}
+                        </Text>
                       </TouchableOpacity>
-                    </View>
-                  </View>
-                  {touched.password && errors.password ? (
-                    <Text style={styles.errorText}>{errors.password}</Text>
-                  ) : null}
+                    }
+                  />
 
-                  {/* Confirm Password */}
-                  <View
-                    style={[
-                      styles.passwordContainer,
-                      { height: h(44) },
-                      fieldBorder("confirmPassword"),
-                    ]}
-                  >
-                    <TextInput
-                      ref={confirmPasswordRef}
-                      placeholder="Confirm Password"
-                      style={[
-                        styles.passwordInput,
-                        { fontSize: moderateScale(16) },
-                      ]}
-                      secureTextEntry={!showConfirmPassword}
-                      placeholderTextColor="#ADADAD"
-                      value={confirmPassword}
-                      onChangeText={setConfirmPassword}
-                      returnKeyType="done"
-                      onFocus={() => setFocusedField("confirmPassword")}
-                      onBlur={() => handleBlur("confirmPassword")}
-                      selectionColor="#0056b3"
-                      cursorColor="#0056b3"
-                    />
-                    <View style={styles.passwordActions}>
-                      {confirmPassword === password &&
-                        confirmPassword.length > 0 && (
-                          <Ionicons
-                            name="checkmark-circle"
-                            size={moderateScale(20)}
-                            color="#4CAF50"
-                            style={{ marginRight: 8 }}
-                          />
-                        )}
+                  <FBField
+                    label="Confirm password"
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                    onFocus={() => setFocusedField("confirmPassword")}
+                    onBlur={() => handleBlur("confirmPassword")}
+                    isFocused={focusedField === "confirmPassword"}
+                    hasError={fieldHasError("confirmPassword")}
+                    errorText={errors.confirmPassword}
+                    secureTextEntry={!showConfirmPassword}
+                    returnKeyType="done"
+                    inputRef={confirmRef}
+                    entranceDelay={300}
+                    h={h}
+                    moderateScale={moderateScale}
+                    rightSlot={
                       <TouchableOpacity
                         onPress={() =>
                           setShowConfirmPassword(!showConfirmPassword)
                         }
+                        hitSlop={{ top: 12, bottom: 12, left: 10, right: 10 }}
+                        activeOpacity={0.6}
                       >
-                        <Image
-                          source={require("../../assets/images/Group 547.png")}
-                          style={{
-                            width: w(15),
-                            height: h(7.5),
-                            tintColor: "#7F7F7F",
-                          }}
-                          resizeMode="contain"
-                        />
+                        <Text
+                          style={[
+                            styles.showHideText,
+                            { fontSize: moderateScale(14) },
+                          ]}
+                        >
+                          {showConfirmPassword ? "Hide" : "Show"}
+                        </Text>
                       </TouchableOpacity>
-                    </View>
-                  </View>
-                  {touched.confirmPassword && errors.confirmPassword ? (
-                    <Text style={styles.errorText}>
-                      {errors.confirmPassword}
-                    </Text>
-                  ) : null}
+                    }
+                  />
                 </View>
 
-                {/* Remember Me + Forgot Password */}
                 <View
                   style={[
                     styles.optionsRow,
-                    { marginTop: h(12), marginBottom: h(20) },
+                    { marginTop: h(14), marginBottom: h(22) },
                   ]}
                 >
                   <TouchableOpacity
                     style={styles.rememberMe}
-                    onPress={() => setRememberMe(!rememberMe)}
+                    onPress={toggleRememberMe}
+                    activeOpacity={0.7}
                   >
-                    <View
+                    <Animated.View
                       style={[
                         styles.checkbox,
                         { width: moderateScale(18), height: moderateScale(18) },
                         rememberMe && styles.checkboxChecked,
+                        { transform: [{ scale: checkboxScale }] },
                       ]}
                     >
                       {rememberMe && (
@@ -506,7 +630,7 @@ export default function RegisterScreen() {
                           color="#fff"
                         />
                       )}
-                    </View>
+                    </Animated.View>
                     <Text
                       style={[
                         styles.optionText,
@@ -516,8 +640,7 @@ export default function RegisterScreen() {
                       Remember Me
                     </Text>
                   </TouchableOpacity>
-
-                  <TouchableOpacity>
+                  <TouchableOpacity activeOpacity={0.7}>
                     <Text
                       style={[
                         styles.forgotPassword,
@@ -529,31 +652,31 @@ export default function RegisterScreen() {
                   </TouchableOpacity>
                 </View>
 
-                {/* Create Account Button */}
-                <HapticButton
-                  style={[
-                    styles.primaryButton,
-                    {
-                      height: h(46),
-                      width: w(138),
-                      marginBottom: h(20),
-                      opacity: isFormValid ? 1 : 0.65,
-                    },
-                  ]}
-                  onPress={handleRegister}
-                  disabled={!isFormValid}
+                {/* Always solid Facebook blue — no opacity dimming ever */}
+                <Animated.View
+                  style={{
+                    transform: [{ scale: buttonScale }],
+                    alignSelf: "center",
+                  }}
                 >
-                  <Text
+                  <HapticButton
                     style={[
-                      styles.primaryButtonText,
-                      { fontSize: moderateScale(16) },
+                      styles.primaryButton,
+                      { height: h(46), width: w(260), marginBottom: h(20) },
                     ]}
+                    onPress={handleRegister}
                   >
-                    Create Account
-                  </Text>
-                </HapticButton>
+                    <Text
+                      style={[
+                        styles.primaryButtonText,
+                        { fontSize: moderateScale(16) },
+                      ]}
+                    >
+                      Create Account
+                    </Text>
+                  </HapticButton>
+                </Animated.View>
 
-                {/* Divider */}
                 <View
                   style={[styles.dividerContainer, { marginBottom: h(12) }]}
                 >
@@ -567,7 +690,6 @@ export default function RegisterScreen() {
                   </Text>
                 </View>
 
-                {/* Social buttons */}
                 <View
                   style={[
                     styles.socialContainer,
@@ -600,7 +722,6 @@ export default function RegisterScreen() {
                   </HapticButton>
                 </View>
 
-                {/* Login link */}
                 <View style={styles.loginContainer}>
                   <Text
                     style={[styles.loginText, { fontSize: moderateScale(14) }]}
@@ -609,6 +730,7 @@ export default function RegisterScreen() {
                   </Text>
                   <TouchableOpacity
                     onPress={() => router.push("/(auth)/login")}
+                    activeOpacity={0.7}
                   >
                     <Text
                       style={[
@@ -630,7 +752,6 @@ export default function RegisterScreen() {
 }
 
 const styles = StyleSheet.create({
-  // === ALL YOUR ORIGINAL STYLES (unchanged) ===
   container: { flex: 1 },
   header: {
     position: "absolute",
@@ -663,79 +784,70 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputGroup: {},
-  input: {
-    backgroundColor: "#FAFAFA",
-    borderRadius: 10,
-    paddingHorizontal: 16,
-    fontFamily: "Cairo_500Medium",
-    color: "#1A1A2E",
+
+  // ── Facebook-style field ───────────────────────────────────────────────────
+  // Subtle grey background, thin 1px border, rounded corners.
+  // No box-shadow ring on focus — border color change only.
+  fbField: {
     width: "100%",
     maxWidth: 296,
     alignSelf: "center",
-  } as any,
-  inputWrapper: {
-    width: "100%",
-    maxWidth: 296,
-    alignSelf: "center",
-    position: "relative",
-    justifyContent: "center",
-    backgroundColor: "#FAFAFA",
-    borderRadius: 10,
-    overflow: "hidden",
-  },
-  phoneWrapper: {
-    width: "100%",
-    maxWidth: 296,
-    alignSelf: "center",
-    position: "relative",
-    justifyContent: "center",
-    backgroundColor: "#FAFAFA",
-    borderRadius: 10,
-    overflow: "hidden",
-  },
-  inputIcon: { position: "absolute", right: 12 },
-  passwordActions: { flexDirection: "row", alignItems: "center" },
-  phoneContainer: {
+    backgroundColor: "#F5F6F7",
+    borderRadius: 6,
+    borderWidth: 1,
     flexDirection: "row",
+    alignItems: "center",
+    overflow: "hidden",
+  },
+  fbFieldInner: { flex: 1, position: "relative", justifyContent: "center" },
+  fbLabel: {
+    position: "absolute",
+    left: 14,
+    fontFamily: "Cairo_500Medium",
+    zIndex: 1,
+  },
+  fbLabelStatic: {
+    color: "#90949C",
+    fontFamily: "Cairo_500Medium",
+    paddingLeft: 12,
+    paddingTop: 4,
+  },
+  fbInput: {
+    fontFamily: "Cairo_500Medium",
+    color: "#1C1E21",
+    paddingHorizontal: 14,
+    width: "100%",
+  } as any,
+  fbFieldRight: {
+    paddingRight: 14,
+    paddingLeft: 4,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  showHideText: { color: "#1877F2", fontFamily: "Cairo_700Bold" },
+  fbErrorText: {
+    color: "#FA3E3E",
+    fontFamily: "Cairo_500Medium",
+    marginTop: 5,
+    paddingHorizontal: 2,
+    alignSelf: "center",
     width: "100%",
     maxWidth: 296,
-    alignSelf: "center",
   },
+
+  // Phone prefix
   countryCode: {
     backgroundColor: "#0056b3",
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 4,
+    gap: 3,
   },
-  countryCodeText: {
-    color: "#fff",
-    fontFamily: "Cairo_500Medium",
-  },
-  phoneInput: {
-    flex: 1,
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-  },
-  passwordContainer: {
-    backgroundColor: "#FAFAFA",
-    borderRadius: 10,
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "100%",
-    maxWidth: 296,
-    alignSelf: "center",
-  } as any,
-  passwordInput: {
-    flex: 1,
-    fontFamily: "Cairo_500Medium",
-    color: "#1A1A2E",
-    marginRight: 10,
-  } as any,
+  countryCodeText: { color: "#fff", fontFamily: "Cairo_500Medium" },
+
+  // Options
   optionsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -756,22 +868,22 @@ const styles = StyleSheet.create({
   checkboxChecked: { backgroundColor: "#0056b3" },
   optionText: { color: "#888", fontFamily: "Cairo_500Medium" },
   forgotPassword: { color: "#0056b3", fontFamily: "Cairo_700Bold" },
+
+  // Button — solid Facebook blue always
   primaryButton: {
-    backgroundColor: "#0056b3",
-    borderRadius: 25,
+    backgroundColor: "#1877F2",
+    borderRadius: 6,
     justifyContent: "center",
     alignItems: "center",
-    alignSelf: "center",
-    shadowColor: "#0056b3",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.35,
+    shadowColor: "#1877F2",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.28,
     shadowRadius: 8,
-    elevation: 8,
+    elevation: 6,
   },
-  primaryButtonText: {
-    color: "#fff",
-    fontFamily: "Cairo_700Bold",
-  },
+  primaryButtonText: { color: "#fff", fontFamily: "Cairo_700Bold" },
+
+  // Social
   dividerContainer: { alignItems: "center" },
   dividerText: { color: "#ADADAD", fontFamily: "Cairo_500Medium" },
   socialContainer: { flexDirection: "row", justifyContent: "center" },
@@ -785,6 +897,8 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 5,
   },
+
+  // Login
   loginContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -792,16 +906,4 @@ const styles = StyleSheet.create({
   },
   loginText: { color: "#ADADAD", fontFamily: "Cairo_500Medium" },
   loginLink: { color: "#0056b3", fontFamily: "Cairo_700Bold" },
-
-  // === NEW VALIDATION STYLE ===
-  errorText: {
-    color: "#E53935",
-    fontSize: 13,
-    fontFamily: "Cairo_500Medium",
-    marginTop: 4,
-    paddingHorizontal: 8,
-    alignSelf: "center",
-    width: "100%",
-    maxWidth: 296,
-  },
 });
