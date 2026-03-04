@@ -8,6 +8,8 @@ import 'react-native-reanimated';
 import { AuthProvider } from '../context/AuthContext';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useRouter, useSegments } from 'expo-router';
+import { useAuth } from '../context/AuthContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -34,17 +36,39 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <AuthProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-          <Stack.Screen name="emergency" options={{ headerShown: false }} />
-          <Stack.Screen name="reminders" options={{ title: 'Reminders' }} />
-          <Stack.Screen name="vehicle" options={{ title: 'Vehicle' }} />
-          <Stack.Screen name="authority" options={{ title: 'Authority' }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-        </Stack>
+        <RootNavigation />
       </AuthProvider>
       <StatusBar style="auto" />
     </ThemeProvider>
+  );
+}
+
+function RootNavigation() {
+  const { token } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    // If user is not logged in and not already in (auth) group, redirect to landing
+    const inAuthGroup = segments[0] === '(auth)';
+    if (!token && !inAuthGroup) {
+      router.replace('/(auth)/landing');
+    } else if (token && inAuthGroup) {
+      // If user is logged in but in auth group, go to home
+      router.replace('/(tabs)');
+    }
+  }, [token, segments]);
+
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="emergency" options={{ headerShown: false }} />
+      <Stack.Screen name="reminders" options={{ title: 'Reminders' }} />
+      <Stack.Screen name="vehicle" options={{ title: 'Vehicle' }} />
+      <Stack.Screen name="authority" options={{ title: 'Authority' }} />
+      <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+    </Stack>
   );
 }
