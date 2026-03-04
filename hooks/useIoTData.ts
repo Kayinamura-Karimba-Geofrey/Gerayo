@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
+import { useAuth } from '../context/AuthContext';
 
 // NOTE: When testing on a physical device, replace localhost with your computer's local IP address (e.g., 192.168.1.x)
 const BACKEND_URL = 'http://localhost:3000';
@@ -12,12 +13,17 @@ export interface SensorData {
 }
 
 export function useIoTData() {
+    const { token } = useAuth();
     const [data, setData] = useState<SensorData | null>(null);
     const [isConnected, setIsConnected] = useState(false);
 
     useEffect(() => {
-        // 1. Initialize the Socket.io connection
-        const socket: Socket = io(BACKEND_URL);
+        if (!token) return;
+
+        // 1. Initialize the Socket.io connection with auth token
+        const socket: Socket = io(BACKEND_URL, {
+            query: { token }
+        });
 
         socket.on('connect', () => {
             console.log('[Socket] Connected to backend on', BACKEND_URL);

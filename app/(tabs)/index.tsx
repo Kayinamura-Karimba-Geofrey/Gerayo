@@ -1,15 +1,37 @@
 import { FloatingFooter } from '@/components/FloatingFooter';
+import { useAuth } from '@/context/AuthContext';
 import { useIoTData } from '@/hooks/useIoTData';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('window');
 
+const BACKEND_URL = 'http://localhost:3000';
+
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const { data: sensorData, isConnected } = useIoTData();
+  const { token, user } = useAuth();
+
+  const [announcements, setAnnouncements] = useState<any[]>([]);
+  const [vehicles, setVehicles] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (token) {
+      fetch(`${BACKEND_URL}/api/announcements`, { headers: { 'x-auth-token': token } })
+        .then(res => res.json())
+        .then(data => Array.isArray(data) ? setAnnouncements(data) : null)
+        .catch(console.error);
+
+      fetch(`${BACKEND_URL}/api/vehicles/inspections`, { headers: { 'x-auth-token': token } })
+        .then(res => res.json())
+        .then(data => Array.isArray(data) ? setVehicles(data) : null)
+        .catch(console.error);
+    }
+  }, [token]);
 
   return (
     <View style={styles.container}>
@@ -39,7 +61,7 @@ export default function HomeScreen() {
         {/* Header Section - Title at 35px from top */}
         <View style={[styles.headerContainer, { marginTop: 35 }]}>
           <View style={styles.headerTexts}>
-            <Text style={styles.welcomeText}>Welcome back</Text>
+            <Text style={styles.welcomeText}>Welcome back, {user?.name || 'User'}</Text>
             <Text style={styles.appTitle}>Car Portal</Text>
           </View>
         </View>

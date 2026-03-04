@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  name      String
+  vehicles  Vehicle[]
+  createdAt DateTime  @default(now())
+}
+
+model Vehicle {
+  id             Int       @id @default(autoincrement())
+  userId         Int
+  user           User      @relation(fields: [userId], references: [id])
+  plateNumber    String    @unique
+  model          String
+  nextInspection DateTime?
+  devices        Device[]
+}
+
+model Device {
+  id         Int          @id @default(autoincrement())
+  vehicleId  Int
+  vehicle    Vehicle      @relation(fields: [vehicleId], references: [id])
+  macAddress String       @unique
+  sensorData SensorData[]
+}
+
+model SensorData {
+  id          Int      @id @default(autoincrement())
+  deviceId    Int
+  device      Device   @relation(fields: [deviceId], references: [id])
+  temperature Float?
+  humidity    Float?
+  timestamp   DateTime @default(now())
+}
+
+model Announcement {
+  id        Int      @id @default(autoincrement())
+  title     String
+  text      String
+  type      String   // e.g. 'WARNING', 'INFO', 'DANGER'
+  createdAt DateTime @default(now())
+}

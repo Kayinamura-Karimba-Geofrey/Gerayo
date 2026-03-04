@@ -8,9 +8,20 @@ const cors = require('cors');
 const PORT = 3000;
 const MQTT_PORT = 1883;
 
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 // 1. Setup Express and HTTP Server
 const app = express();
 app.use(cors());
+app.use(express.json()); // Parse JSON bodies
+
+// Routes
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/vehicles', require('./routes/vehicles'));
+app.use('/api/announcements', require('./routes/announcements'));
+app.use('/api/sensors', require('./routes/sensors'));
+
 const server = http.createServer(app);
 
 // 2. Setup Socket.io for Mobile App (Frontend)
@@ -43,26 +54,68 @@ aedes.on('clientDisconnect', (client) => {
 });
 
 // 4. The Bridge: Listen to MQTT and broadcast to WebSockets
-const SENSOR_TOPIC = 'esp32/sensor_data';
-
-aedes.on('publish', (packet, client) => {
+// Expected topic format: device/{macAddress}/sensor_data
+aedes.on('publish', async (packet, client) => {
   if (client) {
-    if (packet.topic === SENSOR_TOPIC) {
+    const topicParts = packet.topic.split('/');
+    if (topicParts.length === 3 && topicParts[0] === 'device' && topicParts[2] === 'sensor_data') {
+      const macAddress = topicParts[1];
       const messageStr = packet.payload.toString();
+
       try {
-        // Parse the JSON data from ESP32
         const data = JSON.parse(messageStr);
-        console.log(`[MQTT -> WebSocket] Forwarding data:`, data);
-        
-        // Broadcast the parsed data to all connected React Native clients
-        io.emit('sensor_update', data);
+        console.log(`[MQTT -> WebSocket] Forwarding data for device ${macAddress}:`, data);
+
+        // Find the device and its vehicle to determine the owner (userId)
+        const device = await prisma.device.findUnique({
+          where: { macAddress },
+          include: { vehicle: true }
+        });
+
+        if (device) {
+          // Save to database
+          await prisma.sensorData.create({
+            data: {
+              deviceId: device.id,
+              temperature: parseFloat(data.temperature),
+              humidity: parseFloat(data.humidity),
+            }
+          });
+
+          // Broadcast to the specific user's socket room
+          const userId = device.vehicle.userId;
+          io.to(`user_${userId}`).emit('sensor_update', data);
+        } else {
+          console.warn(`[MQTT] Unregistered device MAC: ${macAddress}`);
+        }
       } catch (err) {
-        console.error('[MQTT] Error parsing sensor data:', err.message);
-        // Fallback: send as raw string if it's not JSON
-        io.emit('sensor_update', { raw: messageStr });
+        console.error('[MQTT] Error processing sensor data:', err.message);
       }
     }
   }
+});
+
+// Require JWT for sockets
+const jwt = require('jsonwebtoken');
+io.use((socket, next) => {
+  if (socket.handshake.query && socket.handshake.query.token) {
+    jwt.verify(socket.handshake.query.token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) return next(new Error('Authentication error'));
+      socket.user = decoded.user;
+      next();
+    });
+  } else {
+    next(new Error('Authentication error'));
+  }
+}).on('connection', (socket) => {
+  console.log(`[Socket.io] Authenticated user ${socket.user.id} connected: ${socket.id}`);
+
+  // Join a room specifically for this user to receive their vehicle's data
+  socket.join(`user_${socket.user.id}`);
+
+  socket.on('disconnect', () => {
+    console.log(`[Socket.io] Client disconnected: ${socket.id}`);
+  });
 });
 
 // Start the HTTP / WebSocket server

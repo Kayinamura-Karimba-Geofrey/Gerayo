@@ -5,7 +5,7 @@ const client = mqtt.connect('mqtt://localhost:1883', {
     clientId: 'mock_esp32_device'
 });
 
-const SENSOR_TOPIC = 'esp32/sensor_data';
+const SENSOR_TOPIC = 'device/ABC123DEF456/sensor_data';
 
 client.on('connect', () => {
     console.log('[Mock ESP32] Connected to local MQTT broker.');
