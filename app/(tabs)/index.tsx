@@ -1,7 +1,7 @@
 import { FloatingFooter } from '@/components/FloatingFooter';
+import { useIoTData } from '@/hooks/useIoTData';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -9,6 +9,7 @@ const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
+  const { data: sensorData, isConnected } = useIoTData();
 
   return (
     <View style={styles.container}>
@@ -53,6 +54,43 @@ export default function HomeScreen() {
           <View style={styles.heroOverlay}>
             <Text style={styles.gerayoText}>Gerayo</Text>
             <Text style={styles.heroSubtitle}>Your Car Management System</Text>
+          </View>
+        </View>
+
+        {/* Live Vehicle Sensors Section */}
+        <View style={styles.sectionContainer}>
+          <View style={styles.sectionHeaderRow}>
+            <Text style={styles.sectionTitle}>Live Vehicle Sensors</Text>
+            <View style={[styles.statusDot, { backgroundColor: isConnected ? '#4CAF50' : '#F44336' }]} />
+            <Text style={styles.statusText}>{isConnected ? 'Connected' : 'Disconnected'}</Text>
+          </View>
+
+          <View style={styles.sensorContainer}>
+            {/* Temperature Sensor */}
+            <View style={styles.sensorCard}>
+              <View style={styles.sensorIconCircle}>
+                <Image source={require('../../assets/images/upcomming_inspection_longtimeremaining.png')} style={styles.sensorIcon} resizeMode="contain" />
+              </View>
+              <View>
+                <Text style={styles.sensorLabel}>Temperature</Text>
+                <Text style={styles.sensorValue}>
+                  {sensorData?.temperature ? `${sensorData.temperature}°C` : '--°C'}
+                </Text>
+              </View>
+            </View>
+
+            {/* Humidity Sensor */}
+            <View style={styles.sensorCard}>
+              <View style={[styles.sensorIconCircle, { backgroundColor: 'rgba(45, 94, 255, 0.1)' }]}>
+                <Image source={require('../../assets/images/newtrafficsuggestion.png')} style={styles.sensorIcon} resizeMode="contain" />
+              </View>
+              <View>
+                <Text style={styles.sensorLabel}>Humidity</Text>
+                <Text style={styles.sensorValue}>
+                  {sensorData?.humidity ? `${sensorData.humidity}%` : '--%'}
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
 
@@ -456,5 +494,64 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 14,
     opacity: 0.6,
+  },
+  sectionHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  statusDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginLeft: 10,
+    marginRight: 5,
+  },
+  statusText: {
+    fontFamily: 'Cairo',
+    color: '#FFF',
+    fontSize: 12,
+    opacity: 0.7,
+  },
+  sensorContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+    paddingHorizontal: 15,
+  },
+  sensorCard: {
+    flex: 1,
+    backgroundColor: '#131722',
+    borderRadius: 20,
+    padding: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.05)',
+  },
+  sensorIconCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(45, 94, 255, 0.15)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  sensorIcon: {
+    width: 20,
+    height: 20,
+    tintColor: '#FFF',
+  },
+  sensorLabel: {
+    fontFamily: 'Cairo',
+    color: '#FFF',
+    fontSize: 12,
+    opacity: 0.6,
+  },
+  sensorValue: {
+    fontFamily: 'CairoBold',
+    color: '#FFF',
+    fontSize: 18,
   },
 });
