@@ -30,14 +30,65 @@ router.post('/', auth, async (req, res) => {
                 locationLat,
                 locationLng,
                 locationAccuracy,
-                type,      // 'accident', 'brake_failure', 'other'
-                severity,  // 'low', 'medium', 'high'
+                type: type || 'accident',      // 'accident', 'brake_failure', 'other'
+                severity: severity || 'high',  // 'low', 'medium', 'high'
                 status: 'active'
             }
         });
+
+        // Broadcast to user socket if possible (logic normally in server.js but we can emit if we had the io instance)
+        // For now we just return the alert.
+
         res.json(alert);
     } catch (err) {
         console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+/**
+ * @route   POST api/emergency/hardware
+ * @desc    Hardware (ESP32/ESP8266) trigger for emergency alerts
+ * @access  Public (identified by deviceId)
+ */
+router.post('/hardware', async (req, res) => {
+    try {
+        const { deviceId, message } = req.body;
+
+        if (!deviceId) {
+            return res.status(400).json({ message: 'Device ID is required' });
+        }
+
+        // 1. Find the device and its owner
+        const device = await prisma.device.findUnique({
+            where: { macAddress: deviceId },
+            include: { vehicle: true }
+        });
+
+        if (!device || !device.vehicle) {
+            return res.status(404).json({ message: 'Unregistered device' });
+        }
+
+        const userId = device.vehicle.userId;
+
+        // 2. Create the alert
+        const alert = await prisma.emergencyAlert.create({
+            data: {
+                userId,
+                type: 'accident',
+                severity: 'high',
+                status: 'active'
+            }
+        });
+
+        console.log(`[Hardware Alert] Emergency detected for User: ${userId} (Device: ${deviceId})`);
+
+        // Note: Real-time socket notification is handled in server.js if we use an event bus or share the io object.
+        // For this simple implementation, the app will see it on the next fetch or via the generic MQTT broadcast if we added one.
+
+        res.json({ success: true, alertId: alert.id });
+    } catch (err) {
+        console.error('[Hardware Alert Error]', err.message);
         res.status(500).send('Server Error');
     }
 });

@@ -13,8 +13,7 @@ client.on('connect', () => {
     // Simulate reading sensor data every 3 seconds
     setInterval(() => {
         const mockData = {
-            temperature: (20 + Math.random() * 10).toFixed(2), // 20 to 30 C
-            humidity: (40 + Math.random() * 20).toFixed(2),    // 40% to 60%
+            status: 'active',
             timestamp: new Date().toISOString()
         };
 

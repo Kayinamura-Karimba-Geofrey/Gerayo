@@ -79,42 +79,6 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* Live Vehicle Sensors Section */}
-        <View style={styles.sectionContainer}>
-          <View style={styles.sectionHeaderRow}>
-            <Text style={styles.sectionTitle}>Live Vehicle Sensors</Text>
-            <View style={[styles.statusDot, { backgroundColor: isConnected ? '#4CAF50' : '#F44336' }]} />
-            <Text style={styles.statusText}>{isConnected ? 'Connected' : 'Disconnected'}</Text>
-          </View>
-
-          <View style={styles.sensorContainer}>
-            {/* Temperature Sensor */}
-            <View style={styles.sensorCard}>
-              <View style={styles.sensorIconCircle}>
-                <Image source={require('../../assets/images/upcomming_inspection_longtimeremaining.png')} style={styles.sensorIcon} resizeMode="contain" />
-              </View>
-              <View>
-                <Text style={styles.sensorLabel}>Temperature</Text>
-                <Text style={styles.sensorValue}>
-                  {sensorData?.temperature ? `${sensorData.temperature}°C` : '--°C'}
-                </Text>
-              </View>
-            </View>
-
-            {/* Humidity Sensor */}
-            <View style={styles.sensorCard}>
-              <View style={[styles.sensorIconCircle, { backgroundColor: 'rgba(45, 94, 255, 0.1)' }]}>
-                <Image source={require('../../assets/images/newtrafficsuggestion.png')} style={styles.sensorIcon} resizeMode="contain" />
-              </View>
-              <View>
-                <Text style={styles.sensorLabel}>Humidity</Text>
-                <Text style={styles.sensorValue}>
-                  {sensorData?.humidity ? `${sensorData.humidity}%` : '--%'}
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
 
         {/* Upcoming Inspections */}
         <View style={styles.sectionContainer}>

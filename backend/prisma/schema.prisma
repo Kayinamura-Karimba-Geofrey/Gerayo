@@ -135,8 +135,7 @@ model SensorData {
   id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   deviceId    String?  @map("device_id") @db.Uuid
   device      Device?  @relation(fields: [deviceId], references: [id], onDelete: Cascade)
-  temperature Float?
-  humidity    Float?
+  rawData     String?  @map("raw_data")
   timestamp   DateTime @default(now())
 
   @@map("sensor_data")

@@ -21,7 +21,6 @@ app.use(express.json()); // Parse JSON bodies
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/vehicles', require('./routes/vehicles'));
 app.use('/api/announcements', require('./routes/announcements')); // Legacy global scope
-app.use('/api/sensors', require('./routes/sensors'));
 app.use('/api/trips', require('./routes/trips'));
 app.use('/api/emergency', require('./routes/emergency'));
 app.use('/api/appointments', require('./routes/appointments'));
@@ -81,8 +80,7 @@ aedes.on('publish', (packet, client) => {
             prisma.sensorData.create({
               data: {
                 deviceId: device.id,
-                temperature: parseFloat(data.temperature),
-                humidity: parseFloat(data.humidity),
+                rawData: messageStr,
               }
             }).then(() => {
               // Broadcast to the specific user's socket room
