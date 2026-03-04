@@ -1,9 +1,10 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
+const cors = require('cors');
+
 const aedes = require('aedes')();
 const aedesServer = require('net').createServer(aedes.handle);
-const cors = require('cors');
 
 const PORT = 3000;
 const MQTT_PORT = 1883;
@@ -19,8 +20,12 @@ app.use(express.json()); // Parse JSON bodies
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/vehicles', require('./routes/vehicles'));
-app.use('/api/announcements', require('./routes/announcements'));
+app.use('/api/announcements', require('./routes/announcements')); // Legacy global scope
 app.use('/api/sensors', require('./routes/sensors'));
+app.use('/api/trips', require('./routes/trips'));
+app.use('/api/emergency', require('./routes/emergency'));
+app.use('/api/appointments', require('./routes/appointments'));
+app.use('/api/alerts', require('./routes/alerts'));
 
 const server = http.createServer(app);
 
@@ -55,7 +60,7 @@ aedes.on('clientDisconnect', (client) => {
 
 // 4. The Bridge: Listen to MQTT and broadcast to WebSockets
 // Expected topic format: device/{macAddress}/sensor_data
-aedes.on('publish', async (packet, client) => {
+aedes.on('publish', (packet, client) => {
   if (client) {
     const topicParts = packet.topic.split('/');
     if (topicParts.length === 3 && topicParts[0] === 'device' && topicParts[2] === 'sensor_data') {
@@ -67,27 +72,28 @@ aedes.on('publish', async (packet, client) => {
         console.log(`[MQTT -> WebSocket] Forwarding data for device ${macAddress}:`, data);
 
         // Find the device and its vehicle to determine the owner (userId)
-        const device = await prisma.device.findUnique({
+        prisma.device.findUnique({
           where: { macAddress },
           include: { vehicle: true }
-        });
+        }).then(device => {
+          if (device) {
+            // Save to database
+            prisma.sensorData.create({
+              data: {
+                deviceId: device.id,
+                temperature: parseFloat(data.temperature),
+                humidity: parseFloat(data.humidity),
+              }
+            }).then(() => {
+              // Broadcast to the specific user's socket room
+              const userId = device.vehicle.userId;
+              io.to(`user_${userId}`).emit('sensor_update', data);
+            }).catch(err => console.error('[MQTT DB Save Error]', err.message));
+          } else {
+            console.warn(`[MQTT] Unregistered device MAC: ${macAddress}`);
+          }
+        }).catch(err => console.error('[MQTT DB Query Error]', err.message));
 
-        if (device) {
-          // Save to database
-          await prisma.sensorData.create({
-            data: {
-              deviceId: device.id,
-              temperature: parseFloat(data.temperature),
-              humidity: parseFloat(data.humidity),
-            }
-          });
-
-          // Broadcast to the specific user's socket room
-          const userId = device.vehicle.userId;
-          io.to(`user_${userId}`).emit('sensor_update', data);
-        } else {
-          console.warn(`[MQTT] Unregistered device MAC: ${macAddress}`);
-        }
       } catch (err) {
         console.error('[MQTT] Error processing sensor data:', err.message);
       }

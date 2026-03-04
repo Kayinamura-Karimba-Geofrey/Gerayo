@@ -16,14 +16,14 @@ export default function HomeScreen() {
   const { data: sensorData, isConnected } = useIoTData();
   const { token, user } = useAuth();
 
-  const [announcements, setAnnouncements] = useState<any[]>([]);
+  const [alerts, setAlerts] = useState<any[]>([]);
   const [vehicles, setVehicles] = useState<any[]>([]);
 
   useEffect(() => {
     if (token) {
-      fetch(`${BACKEND_URL}/api/announcements`, { headers: { 'x-auth-token': token } })
+      fetch(`${BACKEND_URL}/api/alerts`, { headers: { 'x-auth-token': token } })
         .then(res => res.json())
-        .then(data => Array.isArray(data) ? setAnnouncements(data) : null)
+        .then(data => Array.isArray(data) ? setAlerts(data) : null)
         .catch(console.error);
 
       fetch(`${BACKEND_URL}/api/vehicles/inspections`, { headers: { 'x-auth-token': token } })
@@ -177,83 +177,35 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* Police Announcements */}
+        {/* Police Alerts */}
         <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Police Announcements</Text>
+          <Text style={styles.sectionTitle}>Recent Context Alerts</Text>
 
-          {/* Announcement 1 */}
-          <TouchableOpacity style={styles.announcementCard}>
-            <View style={[styles.sidebar, { backgroundColor: '#2D5EFF' }]} />
-            <View style={styles.announcementMain}>
-              <View style={styles.announcementHeader}>
-                <View style={styles.announcementIconCircle}>
-                  <Image source={require('../../assets/images/newtrafficsuggestion.png')} style={{ width: 30, height: 30 }} resizeMode="contain" />
+          {alerts.length > 0 ? alerts.map((alert: any) => (
+            <TouchableOpacity key={alert.id} style={styles.announcementCard}>
+              <View style={[styles.sidebar, { backgroundColor: alert.type === 'error' ? '#D32F2F' : alert.type === 'warning' ? '#FFB800' : '#2D5EFF' }]} />
+              <View style={styles.announcementMain}>
+                <View style={styles.announcementHeader}>
+                  <View style={[styles.announcementIconCircle, { backgroundColor: 'rgba(255, 255, 255, 0.1)' }]}>
+                    {/* Placeholder Icon */}
+                    <Image source={require('../../assets/images/newtrafficsuggestion.png')} style={{ width: 20, height: 20 }} resizeMode="contain" />
+                  </View>
+                  <View style={styles.announcementTextContainer}>
+                    <Text style={styles.announcementTitle}>{alert.title}</Text>
+                    <Text style={styles.announcementText}>{alert.message}</Text>
+                  </View>
                 </View>
-                <View style={styles.announcementTextContainer}>
-                  <Text style={styles.announcementTitle}>New Traffic Suggestion</Text>
-                  <Text style={styles.announcementText}>All vehicles must complete their annual inspection by the end of the month. Book your appointment now.</Text>
-                </View>
-                <Text style={styles.announcementDate}>2h ago</Text>
               </View>
-            </View>
-          </TouchableOpacity>
-
-          {/* Announcement 2 */}
-          <TouchableOpacity style={styles.announcementCard}>
-            <View style={[styles.sidebar, { backgroundColor: '#FFB800' }]} />
-            <View style={styles.announcementMain}>
-              <View style={styles.announcementHeader}>
-                <View style={[styles.announcementIconCircle, { backgroundColor: 'rgba(255, 184, 0, 0.1)' }]}>
-                  <Image source={require('../../assets/images/vehicle_inspection_reminder.png')} style={{ width: 30, height: 30 }} resizeMode="contain" />
-                </View>
-                <View style={styles.announcementTextContainer}>
-                  <Text style={styles.announcementTitle}>Vehicle Inspection Reminder</Text>
-                  <Text style={styles.announcementText}>Your vehicle RAB 123A is due for inspection in 25 days. Please schedule an appointment.</Text>
-                </View>
-                <Text style={styles.announcementDate}>1d ago</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-
-          {/* Announcement 3 */}
-          <TouchableOpacity style={styles.announcementCard}>
-            <View style={[styles.sidebar, { backgroundColor: '#D32F2F' }]} />
-            <View style={styles.announcementMain}>
-              <View style={styles.announcementHeader}>
-                <View style={[styles.announcementIconCircle, { backgroundColor: 'rgba(211, 47, 47, 0.1)' }]}>
-                  <Image source={require('../../assets/images/accident_detected.png')} style={{ width: 30, height: 30 }} resizeMode="contain" />
-                </View>
-                <View style={styles.announcementTextContainer}>
-                  <Text style={styles.announcementTitle}>Accident Detected</Text>
-                  <Text style={styles.announcementText}>An accident has been reported on your usual route. Expect delays of up to 20 minutes.</Text>
-                </View>
-                <Text style={styles.announcementDate}>2d ago</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-
-          {/* Announcement 4 */}
-          <TouchableOpacity style={styles.announcementCard}>
-            <View style={[styles.sidebar, { backgroundColor: '#666' }]} />
-            <View style={styles.announcementMain}>
-              <View style={styles.announcementHeader}>
-                <View style={[styles.announcementIconCircle, { backgroundColor: 'rgba(102, 102, 102, 0.1)' }]}>
-                  <Image source={require('../../assets/images/road_safety_week.png')} style={{ width: 30, height: 30 }} resizeMode="contain" />
-                </View>
-                <View style={styles.announcementTextContainer}>
-                  <Text style={styles.announcementTitle}>Road Safety Week</Text>
-                  <Text style={styles.announcementText}>Join us in promoting road safety. Check your vehicle lights, brakes, and tires regularly.</Text>
-                </View>
-                <Text style={styles.announcementDate}>Jan 14</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          )) : <Text style={{ color: '#fff', marginLeft: 20 }}>No active alerts.</Text>}
         </View>
+
+        {/* Removed extra hardcoded announcements from dummy layout */}
 
       </ScrollView>
 
       <FloatingFooter activeTab="home" />
-    </View >
+    </View>
   );
 }
 
