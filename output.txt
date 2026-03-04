@@ -1,0 +1,1089 @@
+error TS2468: Cannot find global value 'Promise'.
+app/(auth)/_layout.tsx(1,23): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/_layout.tsx(5,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/_layout.tsx(6,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/_layout.tsx(7,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/_layout.tsx(8,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/_layout.tsx(9,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/_layout.tsx(10,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/_layout.tsx(11,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/_layout.tsx(12,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/_layout.tsx(13,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(1,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(auth)/appointments.tsx(2,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(auth)/appointments.tsx(3,24): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/appointments.tsx(4,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/appointments.tsx(5,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/appointments.tsx(6,77): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/appointments.tsx(7,35): error TS2307: Cannot find module 'react-native-safe-area-context' or its corresponding type declarations.
+app/(auth)/appointments.tsx(29,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(30,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(31,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(32,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(33,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(35,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(37,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(38,22): error TS7006: Parameter 'car' implicitly has an 'any' type.
+app/(auth)/appointments.tsx(39,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(40,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(46,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(48,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(49,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(50,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(51,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(53,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(54,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(55,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(56,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(57,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(58,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(59,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(68,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(69,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(70,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(70,26): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(auth)/appointments.tsx(71,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(73,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(74,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(74,26): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(auth)/appointments.tsx(75,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(77,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(78,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(84,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(84,28): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(auth)/appointments.tsx(86,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(88,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(89,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/appointments.tsx(89,26): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(auth)/appointments.tsx(90,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(1,58): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/(auth)/driver/sign-up.tsx(2,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(auth)/driver/sign-up.tsx(3,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/driver/sign-up.tsx(4,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/driver/sign-up.tsx(5,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/driver/sign-up.tsx(16,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/driver/sign-up.tsx(17,32): error TS6142: Module '../../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(auth)/driver/sign-up.tsx(18,30): error TS6142: Module '../../../components/HapticButton' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/HapticButton.tsx', but '--jsx' is not set.
+app/(auth)/driver/sign-up.tsx(40,16): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(44,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(45,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(46,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(47,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(51,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(56,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(57,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(61,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(63,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(64,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(65,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(75,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(76,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(77,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(87,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(88,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(89,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(101,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(102,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(103,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(114,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(118,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(119,48): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(121,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(125,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(129,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(133,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(134,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(135,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(136,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(137,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(139,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(140,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(142,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/driver/sign-up.tsx(144,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(1,43): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/(auth)/landing.tsx(2,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(auth)/landing.tsx(3,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/landing.tsx(4,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/landing.tsx(5,35): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/landing.tsx(14,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/landing.tsx(72,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(80,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(90,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(91,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(92,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(98,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(100,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(106,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(108,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(122,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(128,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(129,21): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(auth)/landing.tsx(136,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(138,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(141,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(145,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(150,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(153,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/landing.tsx(157,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(1,58): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/(auth)/login.tsx(2,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(auth)/login.tsx(3,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/login.tsx(4,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/login.tsx(5,41): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/login.tsx(17,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/login.tsx(19,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(auth)/login.tsx(20,32): error TS6142: Module '../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(auth)/login.tsx(21,30): error TS6142: Module '../../components/HapticButton' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/HapticButton.tsx', but '--jsx' is not set.
+app/(auth)/login.tsx(50,16): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(63,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(68,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(69,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(73,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(76,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(77,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(81,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(87,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(94,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(95,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(97,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(98,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(99,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(110,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(114,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(115,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(128,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(132,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(133,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(144,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(146,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(148,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(149,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(150,61): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(auth)/login.tsx(159,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(160,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(164,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(165,60): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(167,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(170,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(171,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(175,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(179,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(182,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(183,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(186,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(187,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(188,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(190,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(191,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(195,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(196,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(197,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/login.tsx(198,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(5,8): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/(auth)/register.tsx(6,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(auth)/register.tsx(7,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(auth)/register.tsx(8,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/register.tsx(9,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/register.tsx(10,41): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/register.tsx(23,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/register.tsx(24,32): error TS6142: Module '../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(auth)/register.tsx(25,30): error TS6142: Module '../../components/HapticButton' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/HapticButton.tsx', but '--jsx' is not set.
+app/(auth)/register.tsx(171,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(174,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(184,20): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(186,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(189,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(201,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(207,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(234,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(238,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(310,17): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+app/(auth)/register.tsx(319,16): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+app/(auth)/register.tsx(324,18): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+app/(auth)/register.tsx(343,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(414,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(419,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(420,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(425,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(427,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(428,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(433,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(442,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(443,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(449,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(458,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(459,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(475,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(493,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(500,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(508,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(517,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(537,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(554,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(559,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(571,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(587,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(594,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(607,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(613,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(618,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(627,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(634,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(643,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(644,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(656,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(662,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(669,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(680,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(683,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(693,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(699,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(705,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(711,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(717,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(725,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(726,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(731,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/register.tsx(735,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(1,43): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/(auth)/reset-password.tsx(2,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(auth)/reset-password.tsx(3,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(auth)/reset-password.tsx(4,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/reset-password.tsx(5,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/reset-password.tsx(6,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/reset-password.tsx(17,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/reset-password.tsx(18,32): error TS6142: Module '../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(auth)/reset-password.tsx(19,30): error TS6142: Module '../../components/HapticButton' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/HapticButton.tsx', but '--jsx' is not set.
+app/(auth)/reset-password.tsx(34,16): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(47,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(52,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(53,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(57,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(60,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(61,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(65,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(71,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(78,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(79,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(81,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(85,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(86,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(87,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(98,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(103,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(107,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(110,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(111,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(114,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(115,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(116,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/reset-password.tsx(117,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(5,8): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/(auth)/vehicle-setup.tsx(6,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(auth)/vehicle-setup.tsx(7,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(auth)/vehicle-setup.tsx(8,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/vehicle-setup.tsx(9,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/vehicle-setup.tsx(10,52): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/vehicle-setup.tsx(23,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/vehicle-setup.tsx(24,32): error TS6142: Module '../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(auth)/vehicle-setup.tsx(141,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(145,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(146,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(150,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(153,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(154,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(157,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(165,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(174,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(175,23): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(auth)/vehicle-setup.tsx(183,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(194,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(195,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(198,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(199,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(201,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(204,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(219,43): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(220,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(234,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(237,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(250,46): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(251,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(266,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(267,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(269,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(275,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(276,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(277,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(279,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(293,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(299,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(303,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(307,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(308,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(315,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(321,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/vehicle-setup.tsx(323,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(1,58): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/(auth)/verify-code.tsx(2,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(auth)/verify-code.tsx(3,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(auth)/verify-code.tsx(4,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/verify-code.tsx(5,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/verify-code.tsx(6,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/verify-code.tsx(13,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/verify-code.tsx(14,32): error TS6142: Module '../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(auth)/verify-code.tsx(15,30): error TS6142: Module '../../components/HapticButton' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/HapticButton.tsx', but '--jsx' is not set.
+app/(auth)/verify-code.tsx(30,21): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+app/(auth)/verify-code.tsx(40,21): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+app/(auth)/verify-code.tsx(52,16): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(65,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(69,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(74,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(79,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(80,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(83,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(84,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(87,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(93,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(95,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(102,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(103,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(106,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(107,44): error TS7006: Parameter 'digit' implicitly has an 'any' type.
+app/(auth)/verify-code.tsx(107,51): error TS7006: Parameter 'index' implicitly has an 'any' type.
+app/(auth)/verify-code.tsx(108,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(109,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(114,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(118,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(123,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(124,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(125,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(126,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(127,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(128,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(130,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(131,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(132,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(133,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(135,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(136,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(137,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(138,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(140,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(141,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(142,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(143,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-code.tsx(147,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(1,43): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/(auth)/verify-phone.tsx(2,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(auth)/verify-phone.tsx(3,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(auth)/verify-phone.tsx(4,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/verify-phone.tsx(5,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/verify-phone.tsx(6,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/verify-phone.tsx(17,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/verify-phone.tsx(18,32): error TS6142: Module '../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(auth)/verify-phone.tsx(19,30): error TS6142: Module '../../components/HapticButton' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/HapticButton.tsx', but '--jsx' is not set.
+app/(auth)/verify-phone.tsx(34,16): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(47,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(52,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(53,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(57,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(60,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(61,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(65,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(71,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(78,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(79,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(81,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(85,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(86,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(87,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(88,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(89,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(90,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(92,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(105,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(110,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/verify-phone.tsx(114,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(1,43): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/(auth)/welcome.tsx(2,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(auth)/welcome.tsx(3,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(auth)/welcome.tsx(4,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(auth)/welcome.tsx(5,35): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(auth)/welcome.tsx(15,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(auth)/welcome.tsx(69,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(77,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(83,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(84,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(85,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(91,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(93,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(99,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(100,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(114,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(120,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(121,21): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(auth)/welcome.tsx(128,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(130,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(133,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(137,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(142,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(145,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(auth)/welcome.tsx(149,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(1,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(tabs)/_layout.tsx(2,22): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(tabs)/_layout.tsx(3,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(tabs)/_layout.tsx(7,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(12,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(16,26): error TS7031: Binding element 'color' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(16,33): error TS7031: Binding element 'size' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(16,44): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(20,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(24,26): error TS7031: Binding element 'color' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(24,33): error TS7031: Binding element 'size' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(24,44): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(28,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(32,26): error TS7031: Binding element 'color' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(32,33): error TS7031: Binding element 'size' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(32,44): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(36,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(40,26): error TS7031: Binding element 'color' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(40,33): error TS7031: Binding element 'size' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(40,44): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(44,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(48,26): error TS7031: Binding element 'color' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(48,33): error TS7031: Binding element 'size' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(48,44): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(51,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(55,26): error TS7031: Binding element 'color' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(55,33): error TS7031: Binding element 'size' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(55,44): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(58,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/_layout.tsx(62,26): error TS7031: Binding element 'color' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(62,33): error TS7031: Binding element 'size' implicitly has an 'any' type.
+app/(tabs)/_layout.tsx(62,44): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/alerts/[id].tsx(1,38): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(tabs)/alerts/[id].tsx(2,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/alerts/[id].tsx(3,32): error TS6142: Module '../../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(tabs)/alerts/[id].tsx(8,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/alerts/[id].tsx(9,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/alerts/[id].tsx(10,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/alerts/_layout.tsx(1,23): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(tabs)/alerts/_layout.tsx(4,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/alerts/index.tsx(1,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/alerts/index.tsx(2,32): error TS6142: Module '../../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(tabs)/alerts/index.tsx(6,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/alerts/index.tsx(7,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/alerts/index.tsx(8,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(1,32): error TS6142: Module '@/components/FloatingFooter' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/FloatingFooter.tsx', but '--jsx' is not set.
+app/(tabs)/index.tsx(2,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(tabs)/index.tsx(3,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(tabs)/index.tsx(4,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(tabs)/index.tsx(5,89): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/index.tsx(6,35): error TS2307: Cannot find module 'react-native-safe-area-context' or its corresponding type declarations.
+app/(tabs)/index.tsx(14,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(15,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(18,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(24,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(25,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(26,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(27,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(27,30): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/index.tsx(28,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(28,42): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(30,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(31,23): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/index.tsx(39,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(40,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(41,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(42,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(47,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(48,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(49,21): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/index.tsx(53,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(54,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(55,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(60,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(61,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(64,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(65,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(66,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(72,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(73,27): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/index.tsx(78,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(79,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(80,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(82,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(83,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(84,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(87,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(88,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(92,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(93,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(94,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(100,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(101,27): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/index.tsx(106,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(107,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(108,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(110,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(111,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(112,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(115,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(116,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(121,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(122,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(125,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(126,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(127,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(128,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(129,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(130,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(130,34): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/index.tsx(132,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(133,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(134,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(136,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(142,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(143,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(144,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(145,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(146,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(147,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(147,34): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/index.tsx(149,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(150,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(151,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(153,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(159,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(160,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(161,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(162,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(163,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(164,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(164,34): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/index.tsx(166,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(167,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(168,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(170,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(176,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(177,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(178,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(179,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(180,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(181,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(181,34): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/index.tsx(183,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(184,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(185,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(187,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/index.tsx(195,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(1,32): error TS6142: Module '@/components/FloatingFooter' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/FloatingFooter.tsx', but '--jsx' is not set.
+app/(tabs)/management.tsx(2,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(tabs)/management.tsx(3,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(tabs)/management.tsx(4,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(tabs)/management.tsx(5,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(tabs)/management.tsx(14,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/management.tsx(15,35): error TS2307: Cannot find module 'react-native-safe-area-context' or its corresponding type declarations.
+app/(tabs)/management.tsx(65,28): error TS2550: Property 'find' does not exist on type '{ id: string; plateNumber: string; brand: string; model: string; year: string; color: string; nextInspection: string; }[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2015' or later.
+app/(tabs)/management.tsx(65,33): error TS7006: Parameter 'c' implicitly has an 'any' type.
+app/(tabs)/management.tsx(73,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(74,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(76,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(85,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(86,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(87,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(90,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(91,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(95,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(98,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(99,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(100,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(106,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(107,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(109,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(111,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(116,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(117,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(123,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(124,33): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/management.tsx(129,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(131,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(132,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(133,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(134,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(135,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(138,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(140,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(143,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(144,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(145,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(146,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(147,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(156,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(158,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(159,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(160,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(161,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(162,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(163,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(165,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(166,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(167,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(169,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(170,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(171,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(173,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(174,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(175,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(182,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(183,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(184,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(186,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(187,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(188,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(194,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(195,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(196,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(199,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(201,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(202,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(203,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(210,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(211,35): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/management.tsx(216,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(223,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(224,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(225,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(226,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(227,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(232,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(234,19): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(235,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(236,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(237,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(239,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(240,23): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(244,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(245,27): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(249,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(253,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(254,27): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(255,27): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/management.tsx(267,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/profile/_layout.tsx(1,23): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(tabs)/profile/_layout.tsx(4,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/profile/index.tsx(1,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(tabs)/profile/index.tsx(2,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/profile/index.tsx(3,32): error TS6142: Module '../../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(tabs)/profile/index.tsx(4,30): error TS6142: Module '../../../components/HapticButton' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/HapticButton.tsx', but '--jsx' is not set.
+app/(tabs)/profile/index.tsx(9,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/profile/index.tsx(10,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/profile/index.tsx(11,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/profile/index.tsx(12,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/profile/index.tsx(16,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/profile/settings.tsx(1,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/profile/settings.tsx(2,32): error TS6142: Module '../../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(tabs)/profile/settings.tsx(6,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/profile/settings.tsx(7,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/profile/settings.tsx(8,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(1,32): error TS6142: Module '@/components/FloatingFooter' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/FloatingFooter.tsx', but '--jsx' is not set.
+app/(tabs)/schedule-appointment.tsx(2,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(tabs)/schedule-appointment.tsx(3,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(tabs)/schedule-appointment.tsx(4,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(tabs)/schedule-appointment.tsx(5,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(tabs)/schedule-appointment.tsx(16,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/schedule-appointment.tsx(17,35): error TS2307: Cannot find module 'react-native-safe-area-context' or its corresponding type declarations.
+app/(tabs)/schedule-appointment.tsx(133,41): error TS2550: Property 'find' does not exist on type '{ id: string; label: string; }[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2015' or later.
+app/(tabs)/schedule-appointment.tsx(133,46): error TS7006: Parameter 't' implicitly has an 'any' type.
+app/(tabs)/schedule-appointment.tsx(150,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(151,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(153,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(162,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(163,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(164,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(165,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(168,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(170,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(172,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(177,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(178,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(184,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(185,57): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/schedule-appointment.tsx(190,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(192,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(193,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(194,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(195,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(196,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(199,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(201,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(204,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(205,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(206,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(207,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(207,156): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(216,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(217,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(218,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(222,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(225,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(226,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(227,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(228,43): error TS2550: Property 'find' does not exist on type '{ id: string; plateNumber: string; brand: string; model: string; year: string; color: string; nextInspection: string; }[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2015' or later.
+app/(tabs)/schedule-appointment.tsx(228,48): error TS7006: Parameter 'c' implicitly has an 'any' type.
+app/(tabs)/schedule-appointment.tsx(232,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(235,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(241,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(246,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(247,56): error TS7006: Parameter 'appointment' implicitly has an 'any' type.
+app/(tabs)/schedule-appointment.tsx(248,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(249,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(250,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(251,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(252,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(253,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(254,53): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(255,53): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(258,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(258,89): error TS2550: Property 'find' does not exist on type '{ id: string; plateNumber: string; brand: string; model: string; year: string; color: string; nextInspection: string; }[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2015' or later.
+app/(tabs)/schedule-appointment.tsx(258,94): error TS7006: Parameter 'c' implicitly has an 'any' type.
+app/(tabs)/schedule-appointment.tsx(260,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(261,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(262,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(266,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(267,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(268,45): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(280,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(286,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(287,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(288,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(289,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(290,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(291,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(293,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(297,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(301,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(302,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(303,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(304,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(305,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(309,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(310,64): error TS2550: Property 'find' does not exist on type '{ id: string; label: string; }[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2015' or later.
+app/(tabs)/schedule-appointment.tsx(310,69): error TS7006: Parameter 't' implicitly has an 'any' type.
+app/(tabs)/schedule-appointment.tsx(312,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(320,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(322,49): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(330,53): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(337,57): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(345,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(346,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(347,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(348,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(355,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(359,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(360,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(361,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(371,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(376,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(382,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/schedule-appointment.tsx(390,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/[id].tsx(1,38): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(tabs)/trips/[id].tsx(2,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/trips/[id].tsx(3,32): error TS6142: Module '../../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(tabs)/trips/[id].tsx(8,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/[id].tsx(9,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/[id].tsx(10,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/_layout.tsx(1,23): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/(tabs)/trips/_layout.tsx(4,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/analytics.tsx(1,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/trips/analytics.tsx(2,32): error TS6142: Module '../../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(tabs)/trips/analytics.tsx(6,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/analytics.tsx(7,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/analytics.tsx(8,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/index.tsx(1,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/trips/index.tsx(2,32): error TS6142: Module '../../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/(tabs)/trips/index.tsx(6,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/index.tsx(7,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/trips/index.tsx(8,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(1,32): error TS6142: Module '@/components/FloatingFooter' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/FloatingFooter.tsx', but '--jsx' is not set.
+app/(tabs)/your-cars.tsx(2,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/(tabs)/your-cars.tsx(3,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/(tabs)/your-cars.tsx(4,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/(tabs)/your-cars.tsx(5,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/(tabs)/your-cars.tsx(19,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/(tabs)/your-cars.tsx(20,35): error TS2307: Cannot find module 'react-native-safe-area-context' or its corresponding type declarations.
+app/(tabs)/your-cars.tsx(99,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(100,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(103,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(111,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(112,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(113,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(114,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(118,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(119,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(125,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(126,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(132,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(133,32): error TS7006: Parameter 'car' implicitly has an 'any' type.
+app/(tabs)/your-cars.tsx(134,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(135,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(136,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(142,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(143,49): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/(tabs)/your-cars.tsx(148,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(150,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(151,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(152,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(155,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(156,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(157,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(158,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(159,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(160,41): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(170,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(176,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(180,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(185,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(195,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(196,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(197,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(201,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(206,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(207,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(208,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(217,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(223,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(228,33): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(237,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/(tabs)/your-cars.tsx(245,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(1,76): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/_layout.tsx(2,56): error TS2307: Cannot find module '@react-navigation/native' or its corresponding type declarations.
+app/_layout.tsx(3,23): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/_layout.tsx(4,31): error TS2307: Cannot find module 'expo-splash-screen' or its corresponding type declarations.
+app/_layout.tsx(5,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/_layout.tsx(6,27): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/_layout.tsx(34,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(35,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(36,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(37,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(38,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(39,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(40,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(41,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(42,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/_layout.tsx(44,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/authority/_layout.tsx(1,23): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/authority/_layout.tsx(4,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/authority/index.tsx(1,36): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/authority/index.tsx(2,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/authority/index.tsx(7,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/authority/index.tsx(8,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/authority/index.tsx(9,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/authority/lookup.tsx(1,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/authority/lookup.tsx(5,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/authority/lookup.tsx(6,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/_layout.tsx(1,23): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/emergency/_layout.tsx(4,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(1,43): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/emergency/accident-detected.tsx(2,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/emergency/accident-detected.tsx(3,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/emergency/accident-detected.tsx(4,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/emergency/accident-detected.tsx(5,44): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/emergency/accident-detected.tsx(11,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/emergency/accident-detected.tsx(12,32): error TS6142: Module '../../components/AnimatedScreen' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/AnimatedScreen.tsx', but '--jsx' is not set.
+app/emergency/accident-detected.tsx(13,30): error TS6142: Module '../../components/HapticButton' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/HapticButton.tsx', but '--jsx' is not set.
+app/emergency/accident-detected.tsx(36,16): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(45,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(47,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(54,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(60,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(61,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(63,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(65,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(66,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(67,37): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+app/emergency/accident-detected.tsx(74,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(77,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(80,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(81,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(85,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(90,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/accident-detected.tsx(94,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(1,58): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/emergency/brake-failure.tsx(2,50): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/emergency/brake-failure.tsx(3,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/emergency/brake-failure.tsx(4,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/emergency/brake-failure.tsx(5,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/emergency/brake-failure.tsx(6,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/emergency/brake-failure.tsx(14,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/emergency/brake-failure.tsx(26,16): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(39,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(44,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(47,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(48,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(51,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(56,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(57,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(58,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(63,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(64,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(65,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(71,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(73,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(74,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(75,29): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(81,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(82,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(86,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(87,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(90,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(94,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(95,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(99,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/brake-failure.tsx(103,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(1,58): error TS2307: Cannot find module '@expo-google-fonts/cairo' or its corresponding type declarations.
+app/emergency/confirmation.tsx(2,26): error TS2307: Cannot find module '@expo/vector-icons' or its corresponding type declarations.
+app/emergency/confirmation.tsx(3,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+app/emergency/confirmation.tsx(4,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/emergency/confirmation.tsx(5,27): error TS2307: Cannot find module 'expo-status-bar' or its corresponding type declarations.
+app/emergency/confirmation.tsx(6,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+app/emergency/confirmation.tsx(13,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/emergency/confirmation.tsx(25,16): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(29,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(34,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(37,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(38,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(41,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(43,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(44,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(45,25): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(50,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(51,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(52,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(58,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(62,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(65,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/emergency/confirmation.tsx(69,21): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/index.tsx(1,26): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/index.tsx(4,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/modal.tsx(1,22): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/modal.tsx(2,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/modal.tsx(4,28): error TS6142: Module '@/components/themed-text' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/themed-text.tsx', but '--jsx' is not set.
+app/modal.tsx(5,28): error TS6142: Module '@/components/themed-view' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/themed-view.tsx', but '--jsx' is not set.
+app/modal.tsx(9,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/modal.tsx(10,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/modal.tsx(11,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/modal.tsx(12,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/reminders/[id].tsx(1,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/reminders/[id].tsx(2,38): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/reminders/[id].tsx(7,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/reminders/[id].tsx(8,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/reminders/_layout.tsx(1,23): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/reminders/_layout.tsx(4,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/reminders/index.tsx(1,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/reminders/index.tsx(5,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/reminders/index.tsx(6,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/vehicle/_layout.tsx(1,23): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/vehicle/_layout.tsx(4,12): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/vehicle/edit.tsx(1,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/vehicle/edit.tsx(5,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/vehicle/edit.tsx(6,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/vehicle/index.tsx(1,36): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+app/vehicle/index.tsx(2,27): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+app/vehicle/index.tsx(7,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/vehicle/index.tsx(8,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+app/vehicle/index.tsx(9,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/AnimatedScreen.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+components/AnimatedScreen.tsx(2,49): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+components/AnimatedScreen.tsx(3,30): error TS2307: Cannot find module 'react-native-safe-area-context' or its corresponding type declarations.
+components/AnimatedScreen.tsx(11,5): error TS7031: Binding element 'children' implicitly has an 'any' type.
+components/AnimatedScreen.tsx(13,5): error TS7031: Binding element 'style' implicitly has an 'any' type.
+components/AnimatedScreen.tsx(27,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/AnimatedScreen.tsx(28,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/external-link.tsx(1,28): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+components/external-link.tsx(2,63): error TS2307: Cannot find module 'expo-web-browser' or its corresponding type declarations.
+components/external-link.tsx(3,37): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+components/external-link.tsx(9,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/external-link.tsx(13,16): error TS2705: An async function or method in ES5 requires the 'Promise' constructor.  Make sure you have a declaration for the 'Promise' constructor or include 'ES2015' in your '--lib' option.
+components/external-link.tsx(13,23): error TS7006: Parameter 'event' implicitly has an 'any' type.
+components/external-link.tsx(14,13): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+components/FloatingFooter.tsx(1,32): error TS2307: Cannot find module 'expo-linear-gradient' or its corresponding type declarations.
+components/FloatingFooter.tsx(2,24): error TS2307: Cannot find module 'expo-router' or its corresponding type declarations.
+components/FloatingFooter.tsx(3,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+components/FloatingFooter.tsx(11,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+components/FloatingFooter.tsx(12,35): error TS2307: Cannot find module 'react-native-safe-area-context' or its corresponding type declarations.
+components/FloatingFooter.tsx(29,11): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+components/FloatingFooter.tsx(35,11): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+components/FloatingFooter.tsx(41,11): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+components/FloatingFooter.tsx(47,11): error TS2580: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+components/FloatingFooter.tsx(57,9): error TS7031: Binding element 'tab' implicitly has an 'any' type.
+components/FloatingFooter.tsx(57,14): error TS7031: Binding element 'isActive' implicitly has an 'any' type.
+components/FloatingFooter.tsx(57,24): error TS7031: Binding element 'onPress' implicitly has an 'any' type.
+components/FloatingFooter.tsx(57,33): error TS7031: Binding element 'entryDelay' implicitly has an 'any' type.
+components/FloatingFooter.tsx(117,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(129,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(137,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(139,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(145,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(155,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(163,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(168,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(181,3): error TS7031: Binding element 'activeTab' implicitly has an 'any' type.
+components/FloatingFooter.tsx(208,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(219,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/FloatingFooter.tsx(222,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/haptic-tab.tsx(1,41): error TS2307: Cannot find module '@react-navigation/bottom-tabs' or its corresponding type declarations.
+components/haptic-tab.tsx(2,35): error TS2307: Cannot find module '@react-navigation/elements' or its corresponding type declarations.
+components/haptic-tab.tsx(3,26): error TS2307: Cannot find module 'expo-haptics' or its corresponding type declarations.
+components/haptic-tab.tsx(7,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/haptic-tab.tsx(9,19): error TS7006: Parameter 'ev' implicitly has an 'any' type.
+components/haptic-tab.tsx(10,13): error TS2580: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node`.
+components/HapticButton.tsx(1,26): error TS2307: Cannot find module 'expo-haptics' or its corresponding type declarations.
+components/HapticButton.tsx(2,31): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+components/HapticButton.tsx(9,8): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+components/HapticButton.tsx(16,5): error TS7031: Binding element 'children' implicitly has an 'any' type.
+components/HapticButton.tsx(17,5): error TS7031: Binding element 'style' implicitly has an 'any' type.
+components/HapticButton.tsx(18,5): error TS7031: Binding element 'onPress' implicitly has an 'any' type.
+components/HapticButton.tsx(19,5): error TS7031: Binding element 'disabled' implicitly has an 'any' type.
+components/HapticButton.tsx(48,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/HapticButton.tsx(57,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/hello-wave.tsx(1,22): error TS2307: Cannot find module 'react-native-reanimated' or its corresponding type declarations.
+components/hello-wave.tsx(5,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/parallax-scroll-view.tsx(1,54): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+components/parallax-scroll-view.tsx(2,28): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+components/parallax-scroll-view.tsx(8,8): error TS2307: Cannot find module 'react-native-reanimated' or its corresponding type declarations.
+components/parallax-scroll-view.tsx(10,28): error TS6142: Module '@/components/themed-view' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/themed-view.tsx', but '--jsx' is not set.
+components/parallax-scroll-view.tsx(48,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/parallax-scroll-view.tsx(52,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/parallax-scroll-view.tsx(60,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/themed-text.tsx(1,50): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+components/themed-text.tsx(21,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/themed-view.tsx(1,38): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+components/themed-view.tsx(13,10): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/ui/collapsible.tsx(1,45): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+components/ui/collapsible.tsx(2,46): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+components/ui/collapsible.tsx(4,28): error TS6142: Module '@/components/themed-text' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/themed-text.tsx', but '--jsx' is not set.
+components/ui/collapsible.tsx(5,28): error TS6142: Module '@/components/themed-view' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/themed-view.tsx', but '--jsx' is not set.
+components/ui/collapsible.tsx(6,28): error TS6142: Module '@/components/ui/icon-symbol' was resolved to 'F:/Projects/SafeTrack/Codebase/Gerayo/components/ui/icon-symbol.tsx', but '--jsx' is not set.
+components/ui/collapsible.tsx(15,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/ui/collapsible.tsx(16,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/ui/collapsible.tsx(18,35): error TS7006: Parameter 'value' implicitly has an 'any' type.
+components/ui/collapsible.tsx(20,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/ui/collapsible.tsx(28,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/ui/collapsible.tsx(30,18): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/ui/icon-symbol.ios.tsx(1,59): error TS2307: Cannot find module 'expo-symbols' or its corresponding type declarations.
+components/ui/icon-symbol.ios.tsx(2,38): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+components/ui/icon-symbol.ios.tsx(18,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+components/ui/icon-symbol.tsx(3,27): error TS2307: Cannot find module '@expo/vector-icons/MaterialIcons' or its corresponding type declarations.
+components/ui/icon-symbol.tsx(4,47): error TS2307: Cannot find module 'expo-symbols' or its corresponding type declarations.
+components/ui/icon-symbol.tsx(5,32): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+components/ui/icon-symbol.tsx(6,66): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+components/ui/icon-symbol.tsx(40,10): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+constants/theme.ts(6,26): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+hooks/use-color-scheme.ts(1,32): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+hooks/use-color-scheme.web.ts(1,37): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+hooks/use-color-scheme.web.ts(2,52): error TS2307: Cannot find module 'react-native' or its corresponding type declarations.
+hooks/use-theme-color.ts(14,26): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ light?: string | undefined; dark?: string | undefined; }'.
+hooks/use-theme-color.ts(19,12): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ light: { text: string; background: string; tint: string; icon: string; tabIconDefault: string; tabIconSelected: string; }; dark: { text: string; background: string; tint: string; icon: string; tabIconDefault: string; tabIconSelected: string; }; }'.
+tsconfig.json(2,14): error TS6053: File 'expo/tsconfig.base' not found.

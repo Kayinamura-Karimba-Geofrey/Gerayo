@@ -24,6 +24,7 @@ export default function VerifyCodeScreen() {
     });
     const [code, setCode] = useState(['', '', '', '']);
     const [scrolled, setScrolled] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const handleKeyPress = (key: string) => {
         if (key === 'backspace') {
@@ -46,6 +47,15 @@ export default function VerifyCodeScreen() {
                 return newCode;
             });
         }
+    };
+
+    const handleContinue = () => {
+        if (!code.every(digit => digit !== '')) {
+            setErrorMsg('Please enter the full 4-digit code.');
+            return;
+        }
+        setErrorMsg('');
+        router.replace('/(tabs)');
     };
 
     if (!fontsLoaded) {
@@ -111,9 +121,13 @@ export default function VerifyCodeScreen() {
                                 ))}
                             </View>
 
+                            {errorMsg ? (
+                                <Text style={{ color: '#FA3E3E', fontFamily: 'Cairo_500Medium', marginBottom: 12 }}>{errorMsg}</Text>
+                            ) : null}
+
                             <HapticButton
                                 style={styles.continueButton}
-                                onPress={() => router.push('/(auth)/vehicle-setup')}
+                                onPress={handleContinue}
                             >
                                 <Text style={styles.continueButtonText}>Continue</Text>
                             </HapticButton>

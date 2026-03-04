@@ -346,25 +346,33 @@ export default function ScheduleAppointmentScreen() {
                                     <Text style={styles.modalLabel}>Date</Text>
                                     <View style={styles.iconInputWrapper}>
                                         <TextInput
-                                            style={styles.modalInput}
+                                            style={[styles.modalInput, errors.date && { borderColor: '#FA3E3E' }]}
                                             placeholder="mm/dd/yyy"
                                             placeholderTextColor="#444"
                                             value={selectedDate}
-                                            onChangeText={setSelectedDate}
+                                            onChangeText={(text) => {
+                                                setSelectedDate(text);
+                                                if (errors.date) setErrors({ ...errors, date: '' });
+                                            }}
                                         />
                                         <Ionicons name="calendar-outline" size={20} color="#444" style={styles.inputIcon} />
                                     </View>
+                                    {errors.date && <Text style={{ color: '#FA3E3E', fontSize: 12, marginTop: 4 }}>{errors.date}</Text>}
                                 </View>
 
                                 <View style={styles.formItem}>
                                     <Text style={styles.modalLabel}>Location</Text>
                                     <TextInput
-                                        style={styles.modalInput}
+                                        style={[styles.modalInput, errors.location && { borderColor: '#FA3E3E' }]}
                                         placeholder="e.g , Central Inspection Center"
                                         placeholderTextColor="#444"
                                         value={selectedLocation || ''}
-                                        onChangeText={setSelectedLocation}
+                                        onChangeText={(text) => {
+                                            setSelectedLocation(text);
+                                            if (errors.location) setErrors({ ...errors, location: '' });
+                                        }}
                                     />
+                                    {errors.location && <Text style={{ color: '#FA3E3E', fontSize: 12, marginTop: 4 }}>{errors.location}</Text>}
                                 </View>
                             </View>
 

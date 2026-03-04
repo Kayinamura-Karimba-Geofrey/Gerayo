@@ -7,7 +7,6 @@ export default function AuthLayout() {
             <Stack.Screen name="landing" />
             <Stack.Screen name="login" />
             <Stack.Screen name="register" />
-            <Stack.Screen name="vehicle-setup" />
             <Stack.Screen name="reset-password" />
             <Stack.Screen name="verify-phone" />
             <Stack.Screen name="verify-code" />

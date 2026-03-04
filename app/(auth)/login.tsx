@@ -41,6 +41,7 @@ export default function LoginScreen() {
     const [fullName, setFullName] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
     const isFullNameValid = fullName.length > 2;
     const isPhoneValid = phone.length >= 10;
@@ -57,6 +58,15 @@ export default function LoginScreen() {
         } else if (y <= 10 && scrolled) {
             setScrolled(false);
         }
+    };
+
+    const handleLogin = () => {
+        if (!isFullNameValid || !isPhoneValid || !isPasswordValid) {
+            setErrorMsg('Please ensure all fields are correctly filled.');
+            return;
+        }
+        setErrorMsg('');
+        router.push('/(auth)/verify-phone');
     };
 
     return (
@@ -172,9 +182,15 @@ export default function LoginScreen() {
                                     </TouchableOpacity>
                                 </View>
 
+                                {errorMsg ? (
+                                    <Text style={[styles.optionText, { color: '#FA3E3E', textAlign: 'center', marginBottom: 16 }]}>
+                                        {errorMsg}
+                                    </Text>
+                                ) : null}
+
                                 <HapticButton
                                     style={styles.primaryButton}
-                                    onPress={() => router.replace('/(tabs)')}
+                                    onPress={handleLogin}
                                 >
                                     <Text style={styles.primaryButtonText}>Log In</Text>
                                 </HapticButton>

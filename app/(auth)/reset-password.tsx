@@ -28,7 +28,17 @@ export default function ResetPasswordScreen() {
 
     const [scrolled, setScrolled] = useState(false);
     const [email, setEmail] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    const handleContinue = () => {
+        if (!isEmailValid) {
+            setErrorMsg('Please enter a valid email address.');
+            return;
+        }
+        setErrorMsg('');
+        router.push('/(auth)/verify-code');
+    };
 
     if (!fontsLoaded) {
         return <View style={{ flex: 1, backgroundColor: '#1a1a3a' }} />;
@@ -100,9 +110,13 @@ export default function ResetPasswordScreen() {
                                     </View>
                                 </View>
 
+                                {errorMsg ? (
+                                    <Text style={{ color: '#FA3E3E', fontFamily: 'Cairo_500Medium', marginBottom: 12 }}>{errorMsg}</Text>
+                                ) : null}
+
                                 <HapticButton
                                     style={styles.primaryButton}
-                                    onPress={() => router.push('/(auth)/verify-code')}
+                                    onPress={handleContinue}
                                 >
                                     <Text style={styles.primaryButtonText}>Continue</Text>
                                 </HapticButton>

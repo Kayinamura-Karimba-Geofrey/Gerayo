@@ -28,7 +28,17 @@ export default function VerifyPhoneScreen() {
 
     const [scrolled, setScrolled] = useState(false);
     const [phone, setPhone] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
     const isPhoneValid = phone.length >= 10;
+
+    const handleContinue = () => {
+        if (!isPhoneValid) {
+            setErrorMsg('Please enter a valid phone number (10 digits).');
+            return;
+        }
+        setErrorMsg('');
+        router.push('/(auth)/verify-code');
+    };
 
     if (!fontsLoaded) {
         return <View style={{ flex: 1, backgroundColor: '#1a1a3a' }} />;
@@ -107,9 +117,13 @@ export default function VerifyPhoneScreen() {
                                     </View>
                                 </View>
 
+                                {errorMsg ? (
+                                    <Text style={styles.errorText}>{errorMsg}</Text>
+                                ) : null}
+
                                 <HapticButton
                                     style={styles.primaryButton}
-                                    onPress={() => router.push('/(auth)/verify-code')}
+                                    onPress={handleContinue}
                                 >
                                     <Text style={styles.primaryButtonText}>Continue</Text>
                                 </HapticButton>
@@ -192,6 +206,13 @@ const styles = StyleSheet.create({
         marginBottom: 20, // More gap before input
         lineHeight: 18,
         paddingHorizontal: 20,
+    },
+    errorText: {
+        fontFamily: 'Cairo_500Medium',
+        fontSize: 14,
+        color: '#FA3E3E',
+        textAlign: 'center',
+        marginBottom: 16,
     },
     inputGroup: {
         width: '100%',
