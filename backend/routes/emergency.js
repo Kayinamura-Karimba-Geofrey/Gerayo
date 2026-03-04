@@ -53,19 +53,20 @@ router.post('/', auth, async (req, res) => {
  */
 router.post('/hardware', async (req, res) => {
     try {
-        const { deviceId, message } = req.body;
+        const { mac, message } = req.body;
 
-        if (!deviceId) {
-            return res.status(400).json({ message: 'Device ID is required' });
+        if (!mac) {
+            return res.status(400).json({ message: 'MAC address is required' });
         }
 
         // 1. Find the device and its owner
         const device = await prisma.device.findUnique({
-            where: { macAddress: deviceId },
+            where: { macAddress: mac },
             include: { vehicle: true }
         });
 
         if (!device || !device.vehicle) {
+            console.warn(`[Hardware Alert] Unregistered MAC: ${mac}`);
             return res.status(404).json({ message: 'Unregistered device' });
         }
 
@@ -81,10 +82,7 @@ router.post('/hardware', async (req, res) => {
             }
         });
 
-        console.log(`[Hardware Alert] Emergency detected for User: ${userId} (Device: ${deviceId})`);
-
-        // Note: Real-time socket notification is handled in server.js if we use an event bus or share the io object.
-        // For this simple implementation, the app will see it on the next fetch or via the generic MQTT broadcast if we added one.
+        console.log(`[Hardware Alert] Emergency detected for User: ${userId} (MAC: ${mac})`);
 
         res.json({ success: true, alertId: alert.id });
     } catch (err) {
