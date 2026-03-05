@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 async function triggerAlert() {
-    const response = await fetch('http://localhost:3000/api/emergency/hardware', {
+    const response = await fetch('http://10.12.73.12:3000/api/emergency/hardware', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
