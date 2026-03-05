@@ -13,11 +13,13 @@ import {
 } from 'react-native';
 import { AnimatedScreen } from '../../components/AnimatedScreen';
 import { HapticButton } from '../../components/HapticButton';
+import { useAuth } from '../../context/AuthContext';
 
 const { width } = Dimensions.get('window');
 
 export default function VerifyCodeScreen() {
     const router = useRouter();
+    const { login } = useAuth();
     const [fontsLoaded] = useFonts({
         Cairo_500Medium,
         Cairo_700Bold,
@@ -55,6 +57,8 @@ export default function VerifyCodeScreen() {
             return;
         }
         setErrorMsg('');
+        // Perform mock login to update AuthContext state
+        login('mock-jwt-token', { name: 'Test User', email: 'testuser@example.com' });
         router.replace('/(tabs)');
     };
 

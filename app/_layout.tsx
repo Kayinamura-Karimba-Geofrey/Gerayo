@@ -9,7 +9,9 @@ import { AuthProvider } from '../context/AuthContext';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useRouter, useSegments } from 'expo-router';
+import EmergencyCountdownModal from '../components/EmergencyCountdownModal';
 import { useAuth } from '../context/AuthContext';
+import { useHardwareEmergency } from '../hooks/useHardwareEmergency';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -47,6 +49,7 @@ function RootNavigation() {
   const { token } = useAuth();
   const segments = useSegments();
   const router = useRouter();
+  const { emergency, clearEmergency } = useHardwareEmergency();
 
   useEffect(() => {
     // If user is not logged in and not already in (auth) group, redirect to landing
@@ -60,15 +63,22 @@ function RootNavigation() {
   }, [token, segments]);
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="emergency" options={{ headerShown: false }} />
-      <Stack.Screen name="reminders" options={{ title: 'Reminders' }} />
-      <Stack.Screen name="vehicle" options={{ title: 'Vehicle' }} />
-      <Stack.Screen name="authority" options={{ title: 'Authority' }} />
-      <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-    </Stack>
+    <>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="emergency" options={{ headerShown: false }} />
+        <Stack.Screen name="reminders" options={{ title: 'Reminders' }} />
+        <Stack.Screen name="vehicle" options={{ title: 'Vehicle' }} />
+        <Stack.Screen name="authority" options={{ title: 'Authority' }} />
+        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+      </Stack>
+      <EmergencyCountdownModal
+        visible={!!emergency}
+        onCancel={clearEmergency}
+        alertId={emergency?.alertId || null}
+      />
+    </>
   );
 }

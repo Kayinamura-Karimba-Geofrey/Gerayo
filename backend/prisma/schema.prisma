@@ -15,12 +15,11 @@ model User {
   phone           String?          @db.VarChar(20)
   createdAt       DateTime?        @default(now()) @map("created_at") @db.Timestamp(6)
   updatedAt       DateTime?        @default(now()) @map("updated_at") @db.Timestamp(6)
-  
-  vehicles        Vehicle[]
+  alerts          Alert[]
+  appointments    Appointment[]
   emergencyAlerts EmergencyAlert[]
   trips           Trip[]
-  appointments    Appointment[]
-  alerts          Alert[]
+  vehicles        Vehicle[]
 
   @@map("users")
 }
@@ -34,11 +33,10 @@ model Vehicle {
   color          String?       @db.VarChar(50)
   nextInspection DateTime?     @map("next_inspection") @db.Date
   createdAt      DateTime?     @default(now()) @map("created_at") @db.Timestamp(6)
-  
-  user           User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  appointments   Appointment[]
   devices        Device[]
   trips          Trip[]
-  appointments   Appointment[]
+  user           User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId], map: "idx_vehicles_user_id")
   @@map("vehicles")
@@ -47,14 +45,13 @@ model Vehicle {
 model EmergencyAlert {
   id               String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId           String?   @map("user_id") @db.Uuid
-  locationLat      Decimal   @map("location_lat") @db.Decimal(10, 8)
-  locationLng      Decimal   @map("location_lng") @db.Decimal(11, 8)
+  locationLat      Decimal?  @map("location_lat") @db.Decimal(10, 8)
+  locationLng      Decimal?  @map("location_lng") @db.Decimal(11, 8)
   locationAccuracy Decimal?  @map("location_accuracy") @db.Decimal(8, 2)
   timestamp        DateTime? @default(now()) @db.Timestamp(6)
-  type             String    @db.VarChar(50) // 'accident', 'brake_failure', 'other'
-  severity         String    @db.VarChar(20) // 'low', 'medium', 'high'
-  status           String?   @default("active") @db.VarChar(20) // 'active', 'resolved', 'false_alarm'
-  
+  type             String    @db.VarChar(50)
+  severity         String    @db.VarChar(20)
+  status           String?   @default("active") @db.VarChar(20)
   user             User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([timestamp], map: "idx_emergency_alerts_timestamp")
@@ -74,8 +71,7 @@ model Trip {
   endLng          Decimal?  @map("end_lng") @db.Decimal(11, 8)
   distanceKm      Decimal?  @map("distance_km") @db.Decimal(8, 2)
   durationMinutes Int?      @map("duration_minutes")
-  status          String?   @default("ongoing") @db.VarChar(20) // 'ongoing', 'completed', 'cancelled'
-  
+  status          String?   @default("ongoing") @db.VarChar(20)
   user            User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   vehicle         Vehicle?  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
@@ -85,18 +81,17 @@ model Trip {
 }
 
 model Appointment {
-  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId          String?  @map("user_id") @db.Uuid
-  vehicleId       String?  @map("vehicle_id") @db.Uuid
-  type            String   @db.VarChar(50) // 'inspection', 'maintenance', 'repair'
-  scheduledDate   DateTime @map("scheduled_date") @db.Timestamp(6)
-  durationMinutes Int      @map("duration_minutes")
-  status          String?  @default("scheduled") @db.VarChar(20) // 'scheduled', 'completed', 'cancelled', 'rescheduled'
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId          String?   @map("user_id") @db.Uuid
+  vehicleId       String?   @map("vehicle_id") @db.Uuid
+  type            String    @db.VarChar(50)
+  scheduledDate   DateTime  @map("scheduled_date") @db.Timestamp(6)
+  durationMinutes Int       @map("duration_minutes")
+  status          String?   @default("scheduled") @db.VarChar(20)
   notes           String?
   createdAt       DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
-  
-  user            User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  vehicle         Vehicle? @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  user            User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vehicle         Vehicle?  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
   @@index([userId], map: "idx_appointments_user_id")
   @@index([vehicleId], map: "idx_appointments_vehicle_id")
@@ -108,11 +103,10 @@ model Alert {
   userId    String?   @map("user_id") @db.Uuid
   title     String    @db.VarChar(255)
   message   String
-  type      String    @db.VarChar(20) // 'info', 'warning', 'error', 'success'
+  type      String    @db.VarChar(20)
   timestamp DateTime? @default(now()) @db.Timestamp(6)
   read      Boolean?  @default(false)
   actionUrl String?   @map("action_url") @db.VarChar(500)
-  
   user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([read], map: "idx_alerts_read")
@@ -120,23 +114,22 @@ model Alert {
   @@map("alerts")
 }
 
-// ----- Legacy Keep (IoT Integration) -----
 model Device {
   id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   vehicleId  String?      @map("vehicle_id") @db.Uuid
-  vehicle    Vehicle?     @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
   macAddress String       @unique @map("mac_address")
+  vehicle    Vehicle?     @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
   sensorData SensorData[]
 
   @@map("devices")
 }
 
 model SensorData {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  deviceId    String?  @map("device_id") @db.Uuid
-  device      Device?  @relation(fields: [deviceId], references: [id], onDelete: Cascade)
-  rawData     String?  @map("raw_data")
-  timestamp   DateTime @default(now())
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  deviceId  String?  @map("device_id") @db.Uuid
+  timestamp DateTime @default(now())
+  rawData   String?  @map("raw_data")
+  device    Device?  @relation(fields: [deviceId], references: [id], onDelete: Cascade)
 
   @@map("sensor_data")
 }
