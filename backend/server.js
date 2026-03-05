@@ -18,6 +18,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log(`[HTTP] ${req.method} ${req.url}`);
+  next();
+});
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/vehicles', require('./routes/vehicles'));
@@ -50,7 +55,7 @@ io.use((socket, next) => {
 
   // For visualization/development purposes, allow a mock token
   if (token === 'mock-jwt-token') {
-    socket.user = { id: '3696898d-4e94-463d-8208-554109403328' };
+    socket.user = { id: 'ed15c263-093c-4157-b6a7-554b6fb5a6db' };
     console.log('[Socket] Visualization mode: Accepting mock-jwt-token for Test Driver');
     return next();
   }
@@ -66,15 +71,23 @@ io.use((socket, next) => {
 });
 
 io.on('connection', (socket) => {
-  const userId = socket.user.id;
-  console.log(`[Socket.io] Mobile app client connected: ${socket.id} (User: ${userId})`);
+  const userId = socket.user?.id;
+  console.log(`[Socket] New connection: ${socket.id} | User: ${userId}`);
 
-  // Join the user to their specific room
-  socket.join(`user_${userId}`);
-  console.log(`[Socket.io] Socket ${socket.id} joined room user_${userId}`);
+  if (userId) {
+    socket.join(`user_${userId}`);
+    console.log(`[Socket] Socket ${socket.id} joined room user_${userId}`);
 
-  socket.on('disconnect', () => {
-    console.log(`[Socket.io] Client disconnected: ${socket.id}`);
+    // Diagnostic: List all rooms this socket is in
+    console.log(`[Socket] Socket ${socket.id} is now in rooms:`, Array.from(socket.rooms));
+
+    // Diagnostic: Check global room occupancy
+    const room = io.sockets.adapter.rooms.get(`user_${userId}`);
+    console.log(`[Socket] Global check: Room user_${userId} has ${room ? room.size : 0} members`);
+  }
+
+  socket.on('disconnect', (reason) => {
+    console.log(`[Socket] Client disconnected: ${socket.id} | Reason: ${reason}`);
   });
 });
 
