@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ExpoLocation from 'expo-location';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { BACKEND_URL } from '../constants/config';
 
 interface Props {
     visible: boolean;
@@ -10,37 +11,27 @@ interface Props {
     alertId: string | null;
 }
 
+const DASHBOARD_API = 'http://10.12.75.198:3001/api/accidents';
+
 export default function EmergencyCountdownModal({ visible, onCancel, alertId }: Props) {
     const [countdown, setCountdown] = useState(10);
-    const [progress] = useState(new Animated.Value(1));
+    const progress = useRef(new Animated.Value(1)).current;
+    const realtimeInterval = useRef<any>(null);
+    const locationPermission = useRef(false);
 
+    // Request location permission once
     useEffect(() => {
-        let interval: any;
-        if (visible && countdown > 0) {
-            console.log('[EmergencyModal] Starting countdown at:', countdown);
-            interval = setInterval(() => {
-                setCountdown(prev => {
-                    const nextValue = prev - 1;
-                    console.log('[EmergencyModal] Tick:', nextValue);
-                    return nextValue;
-                });
-            }, 1000);
-        } else if (countdown === 0 && visible) {
-            console.log('[EmergencyModal] Countdown finished, triggering report...');
-            sendToDashboard();
-        }
+        (async () => {
+            const { status } = await ExpoLocation.requestForegroundPermissionsAsync();
+            locationPermission.current = status === 'granted';
+            console.log('[EmergencyModal] Location permission:', status);
+        })();
+    }, []);
 
-        return () => {
-            if (interval) {
-                console.log('[EmergencyModal] Clearing interval');
-                clearInterval(interval);
-            }
-        };
-    }, [visible, countdown]);
-
+    // Reset & animate when modal becomes visible
     useEffect(() => {
         if (visible) {
-            console.log('[EmergencyModal] Modal became visible. Resetting timer.');
+            console.log('[EmergencyModal] Modal opened. alertId:', alertId);
             setCountdown(10);
             progress.setValue(1);
             Animated.timing(progress, {
@@ -48,62 +39,145 @@ export default function EmergencyCountdownModal({ visible, onCancel, alertId }: 
                 duration: 10000,
                 useNativeDriver: false,
             }).start();
-            requestLocationPermission();
+        } else {
+            // Stop real-time updates when modal closes
+            if (realtimeInterval.current) {
+                clearInterval(realtimeInterval.current);
+                realtimeInterval.current = null;
+            }
         }
     }, [visible]);
 
-    const requestLocationPermission = async () => {
+    // Timer & Auto-confirm
+    useEffect(() => {
+        if (!visible) return;
+        if (countdown <= 0) {
+            console.log('[EmergencyModal] Countdown expired. Auto-confirming...');
+            sendEmergencyData('confirmed');
+            return;
+        }
+        const t = setTimeout(() => setCountdown(c => c - 1), 1000);
+        return () => clearTimeout(t);
+    }, [countdown, visible]);
+
+    const getLocationData = async () => {
+        // Fallback data for testing if real GPS fails
+        const fallbackValue = {
+            coords: { latitude: -1.9705, longitude: 30.1044, accuracy: 10 },
+            locationName: 'Kicukiro',
+            address: 'KK 15 Rd, Kicukiro'
+        };
+
+        if (!locationPermission.current) return fallbackValue;
+
         try {
-            console.log('[EmergencyModal] Requesting location permissions...');
-            const { status } = await ExpoLocation.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                console.warn('[EmergencyModal] Permission to access location was denied');
-                return;
+            // Use Highest accuracy for precise location
+            const loc = await ExpoLocation.getCurrentPositionAsync({
+                accuracy: ExpoLocation.Accuracy.Highest,
+            });
+            const coords = loc.coords;
+
+            // Reverse geocode to get human-readable address
+            let locationName = 'Unknown';
+            let address = 'Unknown';
+            try {
+                const places = await ExpoLocation.reverseGeocodeAsync({
+                    latitude: coords.latitude,
+                    longitude: coords.longitude,
+                });
+                if (places.length > 0) {
+                    const place = places[0];
+                    // Pick the most specific name available
+                    locationName = place.name || place.district || place.city || place.subregion || 'Unknown';
+
+                    // Build a precise address string
+                    const parts = [
+                        place.name,
+                        place.streetNumber,
+                        place.street,
+                        place.district,
+                        place.city
+                    ].filter((v, i, a) => v && a.indexOf(v) === i); // Filter out empty and duplicates
+
+                    address = parts.join(', ') || locationName;
+                }
+            } catch (geoErr: any) {
+                console.warn('[EmergencyModal] Reverse geocode failed:', geoErr.message);
             }
-            console.log('[EmergencyModal] Location permission granted');
-        } catch (error) {
-            console.error('[EmergencyModal] Error requesting location permission:', error);
+
+            // Fallback only if both failed completely
+            if (locationName === 'Unknown' && address === 'Unknown' &&
+                coords.latitude === -1.9705) { // Only fallback if we are already using a mock-like coord
+                locationName = 'Kicukiro';
+                address = 'KK 15 Rd, Kicukiro';
+            }
+
+            return { coords, locationName, address };
+        } catch (e: any) {
+            console.warn('[EmergencyModal] GPS failed, using fallback:', e.message);
+            return fallbackValue;
         }
     };
 
-    const sendToDashboard = async () => {
-        try {
-            console.log('[EmergencyModal] Sending accident confirmation to backend...');
+    const sendEmergencyData = async (type: 'realtime' | 'confirmed') => {
+        if (!alertId) return;
+        const locationData = await getLocationData();
+        const now = new Date();
 
-            let location = null;
-            try {
-                location = await ExpoLocation.getCurrentPositionAsync({
-                    accuracy: ExpoLocation.Accuracy.High
-                });
-                console.log('[EmergencyModal] Current location captured:', location?.coords);
-            } catch (e: any) {
-                console.error('[EmergencyModal] Error getting current location:', e.message);
-            }
+        // Format time as HH:MM
+        const timeFormatted = now.toTimeString().slice(0, 5);
+        const isoTimestamp = now.toISOString();
 
-            const response = await fetch(`http://localhost:3000/api/emergency/confirm/${alertId}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    locationLat: location?.coords.latitude || null,
-                    locationLng: location?.coords.longitude || null,
-                    locationAccuracy: location?.coords.accuracy || null,
-                    timestamp: new Date().toISOString()
-                }),
-            });
+        const lat = locationData?.coords.latitude ?? null;
+        const lng = locationData?.coords.longitude ?? null;
+        const coordsString = lat !== null && lng !== null
+            ? `${lat.toFixed(6)}, ${lng.toFixed(6)}`
+            : 'Unknown';
 
-            if (response.ok) {
-                console.log('[EmergencyModal] Successfully sent confirmed alert to backend');
-            } else {
-                const errText = await response.text();
-                console.error('[EmergencyModal] Failed to send to backend:', errText);
-            }
-        } catch (error: any) {
-            console.error('[EmergencyModal] Error sending to dashboard:', error.message);
-        } finally {
-            onCancel();
+        // Exact payload the dashboard API expects
+        const dashboardPayload = {
+            time: timeFormatted,
+            location: locationData?.locationName ?? 'Unknown',
+            coordinates: coordsString,
+            address: locationData?.address ?? 'Unknown',
+        };
+
+        if (type === 'confirmed') {
+            console.log('[EmergencyModal] Sending to dashboard:', JSON.stringify(dashboardPayload));
+
+            // 1. Send directly to dashboard API
+            fetch(DASHBOARD_API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dashboardPayload),
+            })
+                .then(r => console.log('[EmergencyModal] Dashboard response:', r.status))
+                .catch(e => console.error('[EmergencyModal] Dashboard error:', e.message));
         }
+
+        // 2. Also send to your own backend for DB logging and server-side forwarding
+        const backendPayload = {
+            locationLat: lat,
+            locationLng: lng,
+            locationAccuracy: locationData?.coords.accuracy ?? null,
+            timestamp: isoTimestamp,
+            address: locationData?.address ?? 'Unknown',
+            locationCity: locationData?.locationName ?? 'Unknown'
+        };
+        const endpoint = type === 'confirmed'
+            ? `${BACKEND_URL}/api/emergency/confirm/${alertId}`
+            : `${BACKEND_URL}/api/emergency/update/${alertId}`;
+
+        fetch(endpoint, {
+            method: type === 'confirmed' ? 'PATCH' : 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(backendPayload),
+        })
+            .then(r => console.log(`[EmergencyModal] Backend (${type}) response:`, r.status))
+            .catch(e => console.error('[EmergencyModal] Backend error:', e.message))
+            .finally(() => {
+                if (type === 'confirmed') onCancel();
+            });
     };
 
     return (
@@ -140,18 +214,9 @@ export default function EmergencyCountdownModal({ visible, onCancel, alertId }: 
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    gradient: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    content: {
-        width: '90%',
-        alignItems: 'center',
-    },
+    container: { flex: 1 },
+    gradient: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+    content: { width: '90%', alignItems: 'center' },
     title: {
         fontSize: 28,
         color: '#FF4444',

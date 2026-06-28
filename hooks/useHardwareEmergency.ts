@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { io, Socket } from 'socket.io-client';
+import { io } from 'socket.io-client';
+import { BACKEND_URL } from '../constants/config';
 import { useAuth } from '../context/AuthContext';
-
-const BACKEND_URL = 'http://localhost:3000'; // Using localhost for browser visualization
 
 export function useHardwareEmergency() {
     const { token } = useAuth();
@@ -11,25 +10,28 @@ export function useHardwareEmergency() {
     useEffect(() => {
         if (!token) return;
 
-        const socket: Socket = io(BACKEND_URL, {
-            query: { token }
+        console.log('[Socket] Connecting to', BACKEND_URL, 'with token...');
+
+        const socket = io(BACKEND_URL, {
+            query: { token },
+            transports: ['websocket', 'polling'],
         });
 
         socket.on('connect', () => {
-            console.log('[Socket] Connected to backend on', BACKEND_URL);
+            console.log('[Socket] Connected! ID:', socket.id);
         });
 
-        socket.on('connect_error', (err) => {
-            console.error('[Socket] Connection error:', err.message);
+        socket.on('connect_error', (error) => {
+            console.error('[Socket] Connection error:', error.message);
+        });
+
+        socket.on('disconnect', (reason) => {
+            console.log('[Socket] Disconnected:', reason);
         });
 
         socket.on('hardware_emergency', (data) => {
-            console.log('[Socket] Hardware emergency event received!', data);
+            console.log('[Socket] Emergency received!', data);
             setEmergency(data);
-        });
-
-        socket.on('sensor_update', (data) => {
-            console.log('[Socket] Sensor update received:', data);
         });
 
         return () => {

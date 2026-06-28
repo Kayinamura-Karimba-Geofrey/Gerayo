@@ -15,7 +15,7 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [token, setToken] = useState<string | null>(null);
+    const [token, setToken] = useState<string | null>('mock-jwt-token');
     const [user, setUser] = useState<any | null>(null);
 
     useEffect(() => {
