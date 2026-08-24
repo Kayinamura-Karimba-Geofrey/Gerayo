@@ -1,11 +1,9 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit",
-    "source.sortMembers": "explicit"
-  },
-  "workbench.colorCustomizations": {
-    "minimap.background": "#FF222223",
-    "scrollbar.shadow": "#FF222223"
+  "task.allowAutomaticTasks": false,
+  "security.workspace.trust.enabled": true,
+  "git.autofetch": false,
+  "files.associations": {
+    "*.bat": "plaintext",
+    "*.cmd": "plaintext"
   }
 }
